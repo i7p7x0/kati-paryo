@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -7,12 +7,20 @@ import {
   Text,
   TouchableWithoutFeedback,
 } from "react-native";
-
+import { useDispatch } from "react-redux";
+import * as countryActions from "../../store/actions/country";
 // CUSTOM COMPONENTS
 
 import ColorsCollection from "../../constants/ColorsCollection";
 
 const GlobalTextInput = (props) => {
+  const dispatch = useDispatch();
+  const [searchedCountry, setSearchedCountry] = useState("");
+
+  const handleTextChange = (text) => {
+    dispatch(countryActions.filterCountry(text));
+  };
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -21,9 +29,10 @@ const GlobalTextInput = (props) => {
     >
       <View style={styles.GlobalTextInputContainer}>
         <TextInput
-          placeholder="Enter Text Here"
+          placeholder="Search for country"
           style={styles.GlobalTextInput}
-          keyboardType="decimal-pad"
+          keyboardType={props.keyboardType}
+          onChangeText={handleTextChange}
         />
       </View>
     </TouchableWithoutFeedback>

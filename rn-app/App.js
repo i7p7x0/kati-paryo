@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer);
 
 import GlobalButton from "./components/atoms/GlobalButton";
-import GlobalTextInput from "./components/atoms/GlobalTextInput";
+import GlobalSearch from "./components/atoms/GlobalSearch";
 import CountryPicker from "./components/molecules/CountryPicker";
 import CountryItem from "./components/atoms/CountryItem";
 
@@ -36,7 +36,7 @@ export default function App() {
         <View style={styles.container}>
           <CountryPicker />
           <CountryItem />
-          <GlobalTextInput />
+          <GlobalSearch />
           <GlobalButton />
           <StatusBar style="auto" />
         </View>

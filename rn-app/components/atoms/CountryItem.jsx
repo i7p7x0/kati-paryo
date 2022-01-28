@@ -9,7 +9,9 @@ import ColorsCollection from "../../constants/ColorsCollection";
 const CountryItem = (props) => {
   const dispacth = useDispatch();
   const handleCountryItemSelectPress = () => {
-    dispacth(countryActions.selectCountry(props.countryName));
+    dispacth(
+      countryActions.selectCountry(props.countryName, props.currencyCode)
+    );
     props.handleSelectCountryPress();
   };
 

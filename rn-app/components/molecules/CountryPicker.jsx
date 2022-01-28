@@ -14,15 +14,12 @@ import { useSelector } from "react-redux";
 
 import CountryItem from "../atoms/CountryItem";
 import ColorsCollection from "../../constants/ColorsCollection";
-
-// DATA
-
-import COUNTRIES_DATA from "../../data/countriesData";
+import GlobalSearch from "../atoms/GlobalSearch";
 
 const CountryPicker = (props) => {
-  const countryList = useSelector((state) => state.country.selectedCountry);
+  const countryList = useSelector((state) => state.country.filteredCountries);
 
-  console.log(countryList);
+  
 
   const [modalOpenState, setModalOpenState] = useState(false);
 
@@ -35,8 +32,9 @@ const CountryPicker = (props) => {
       <View style={styles.countryPickerContainer}>
         <Text style={styles.countryPickerText}>Select Country</Text>
         <Modal visible={modalOpenState} animationType="slide">
+          <GlobalSearch />
           <FlatList
-            data={COUNTRIES_DATA}
+            data={countryList}
             keyExtractor={(item) => item.countryName}
             renderItem={(itemData) => {
               return (

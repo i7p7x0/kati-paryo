@@ -7,7 +7,18 @@ import {
   Keyboard,
 } from "react-native";
 
+// REDUX
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import { countryReducer } from "./store/reducers/country";
+
 // CUSTOM COMPONENTS
+
+const rootReducer = combineReducers({
+  country: countryReducer,
+});
+
+const store = createStore(rootReducer);
 
 import GlobalButton from "./components/atoms/GlobalButton";
 import GlobalTextInput from "./components/atoms/GlobalTextInput";
@@ -16,19 +27,21 @@ import CountryItem from "./components/atoms/CountryItem";
 
 export default function App() {
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <View style={styles.container}>
-        <CountryPicker />
-        <CountryItem/>
-        <GlobalTextInput />
-        <GlobalButton />
-        <StatusBar style="auto" />
-      </View>
-    </TouchableWithoutFeedback>
+    <Provider store={store}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.container}>
+          <CountryPicker />
+          <CountryItem />
+          <GlobalTextInput />
+          <GlobalButton />
+          <StatusBar style="auto" />
+        </View>
+      </TouchableWithoutFeedback>
+    </Provider>
   );
 }
 

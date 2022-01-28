@@ -5,10 +5,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Modal,
-  TouchableNativeFeedback,
   FlatList,
-  ScrollView,
 } from "react-native";
+
+import { useSelector } from "react-redux";
 
 // CUSTOM COMPONENTS
 
@@ -20,6 +20,10 @@ import ColorsCollection from "../../constants/ColorsCollection";
 import COUNTRIES_DATA from "../../data/countriesData";
 
 const CountryPicker = (props) => {
+  const countryList = useSelector((state) => state.country.selectedCountry);
+
+  console.log(countryList);
+
   const [modalOpenState, setModalOpenState] = useState(false);
 
   const handleSelectCountryPress = () => {

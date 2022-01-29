@@ -10,7 +10,6 @@ export const billReducer = (state = initialState, action) => {
     case ADD_BILL:
       state.billAmount = action.billAmount;
       state.numberOfBillPayers = action.numberOfBillPayers;
-      console.log(state);
       return state;
     default:
       return state;

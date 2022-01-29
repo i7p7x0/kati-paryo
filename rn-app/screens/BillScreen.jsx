@@ -11,12 +11,10 @@ import * as billActions from "../store/actions/Bill";
 // CUSTOM COMPONENTS
 import ColorsCollection from "../constants/ColorsCollection";
 import NUMBER_OF_PAYERS from "../data/NUMBER_OF_PAYERS";
-
 import GlobalTextInput from "../components/atoms/GlobalTextInput";
 import GlobalButton from "../components/atoms/GlobalButton";
-
 import HorizontalNumberOfPeopleSelector from "../components/molecules/HorizontalNumberOfPeopleSelector";
-import DispatchBillButton from "../components/atoms/DispatchBillButton";
+import DispatchBillButton from "../components/dispatchers/DispatchBillButton";
 
 const BillScreen = (props) => {
   const [billState, setBillState] = useState({
@@ -74,10 +72,6 @@ const BillScreen = (props) => {
     setIsCustomInputRequired(false);
   };
 
-  const handleDispatchBill = () => {
-    dispatch(billActions.addBillAmount(billState.billAmount));
-  };
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.screen}>
@@ -126,9 +120,9 @@ const BillScreen = (props) => {
           styleButtonContainer={styles.submitButtonContainer}
           styleButtonText={styles.submitButtonText}
           title="Go"
-          handleButtonPress={handleDispatchBill}
           dispatchAction={billActions.ADD_BILL}
           bill={billState}
+          navigation={props.navigation}
         />
       </View>
     </TouchableWithoutFeedback>

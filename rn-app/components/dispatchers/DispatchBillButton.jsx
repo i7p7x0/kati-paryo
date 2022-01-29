@@ -10,7 +10,7 @@ import {
 
 import * as billActions from "../../store/actions/Bill";
 import { useDispatch } from "react-redux";
-
+import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
 
 const DispatchBillButton = (props) => {
@@ -30,6 +30,8 @@ const DispatchBillButton = (props) => {
           )
         );
     }
+
+    props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
   };
 
   return (

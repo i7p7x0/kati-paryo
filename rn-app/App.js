@@ -1,55 +1,21 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
-
-// REDUX
+import { StyleSheet } from "react-native";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import { countryReducer } from "./store/reducers/country";
+import { billReducer } from "./store/reducers/Bill";
 
-// CUSTOM COMPONENTS
-
-const rootReducer = combineReducers({
-  country: countryReducer,
-});
-
-const store = createStore(rootReducer);
-
-import GlobalButton from "./components/atoms/GlobalButton";
-import GlobalSearch from "./components/atoms/GlobalSearch";
-import CountryPicker from "./components/molecules/CountryPicker";
-import CountryItem from "./components/atoms/CountryItem";
+import BillScreen from "./screens/BillScreen";
 
 export default function App() {
+  const rootReducer = combineReducers({
+    bill:billReducer,
+  });
+  const store = createStore(rootReducer);
+
   return (
     <Provider store={store}>
-      <TouchableWithoutFeedback
-        onPress={() => {
-          Keyboard.dismiss();
-        }}
-      >
-        <View style={styles.container}>
-          <CountryPicker />
-          <CountryItem />
-          <GlobalSearch />
-          <GlobalButton />
-          <StatusBar style="auto" />
-        </View>
-      </TouchableWithoutFeedback>
+      <BillScreen />
     </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const styles = StyleSheet.create({});

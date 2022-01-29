@@ -1,6 +1,8 @@
 export default {
-  buttonColorPrimary: "#EC255A",
-  lightTextColorPrimary: "#FFFFFF",
-  borderDarkPrimary: "#30475E",
-  backgroundDarkPrimary: "#142F43",
+  primary: "#EC255A",
+  secondary: "#FAEDF0",
+  tertiary: "#30475E",
+  quaternary: "#161853",
+  light: "#FFFFFF",
+  dark: "#191919",
 };

@@ -8,16 +8,33 @@ import {
   TouchableNativeFeedback,
 } from "react-native";
 
+import * as billActions from "../../store/actions/Bill";
+import { useDispatch } from "react-redux";
+
 import PlatformsCollection from "../../constants/PlatformsCollection";
 
-const GlobalButton = (props) => {
+const DispatchBillButton = (props) => {
+  const dispatch = useDispatch();
   let TouchableWrapper = TouchableOpacity;
   if (Platform.OS === PlatformsCollection.android) {
     TouchableWrapper = TouchableNativeFeedback;
   }
+
+  const handleDispatchAction = () => {
+    switch (props.dispatchAction) {
+      case billActions.ADD_BILL:
+        dispatch(
+          billActions.addBill(
+            props.bill.billAmount,
+            props.bill.numberOfBillPayers
+          )
+        );
+    }
+  };
+
   return (
     <TouchableWrapper
-      onPress={props.handleButtonPress}
+      onPress={handleDispatchAction}
       disabled={props.disabled || false}
     >
       <View style={[styles.styleButtonContainer, props.styleButtonContainer]}>
@@ -42,4 +59,4 @@ const styles = StyleSheet.create({
   styleButtonText: {},
 });
 
-export default GlobalButton;
+export default DispatchBillButton;

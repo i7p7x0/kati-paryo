@@ -191,22 +191,26 @@ const EditPayerScreen = (props) => {
           />
         </View>
         <GlobalModal visible={modalState}>
-          <ScrollView>
-            {payerTypes.otherPayers.map((payers) => {
-              return (
-                <TouchableOpacity
-                  key={payers.payerId}
-                  onPress={() => {
-                    handleSelectAdjustmentPayer(payers.payerId);
-                  }}
-                >
-                  <View>
-                    <Text>{payers.payerName}</Text>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
+          <View style={styles.selectAdjustmentPayerParentContainer}>
+            <ScrollView>
+              {payerTypes.otherPayers.map((payers) => {
+                return (
+                  <TouchableOpacity
+                    key={payers.payerId}
+                    onPress={() => {
+                      handleSelectAdjustmentPayer(payers.payerId);
+                    }}
+                  >
+                    <View style={styles.selectAdjustmentPayerContainer}>
+                      <Text style={styles.selectAdjustmentPayerText}>
+                        {payers.payerName}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
         </GlobalModal>
         {payerTypes.adjustmentPayer === "" ? (
           <GlobalButton
@@ -270,6 +274,22 @@ const styles = StyleSheet.create({
   },
   submitButtonContainer: { backgroundColor: ColorsCollection.primary },
   submitButtonText: { color: ColorsCollection.light },
+  selectAdjustmentPayerContainer: {
+    backgroundColor: ColorsCollection.tertiary,
+    borderRadius: 8,
+    margin: 10,
+    padding: 10,
+    alignItems: "center",
+  },
+  selectAdjustmentPayerText: {
+    color: ColorsCollection.light,
+  },
+  selectAdjustmentPayerParentContainer: {
+    flex: 1,
+    justifyContent: "center",
+    marginTop: "40%",
+    alignItems: "center",
+  },
 });
 
 export default EditPayerScreen;

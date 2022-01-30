@@ -9,21 +9,120 @@ import GlobalButton from "../atoms/GlobalButton";
 const HorizontalNumberOfPeopleSelector = (props) => {
   return (
     <View>
-      <ScrollView>
-        {props.NUMBER_OF_PAYERS.map((data) => {
-          return (
-            <GlobalButton
-              styleButtonContainer={styles.selectBillPayersButtonContainer}
-              styleButtonText={styles.selectBillPayersButtonText}
-              title={data.id}
-              key={data.id}
-              handleButtonPress={() => {
-                props.handleSelectBillPayersPress(data.id);
-              }}
-            />
-          );
-        })}
-      </ScrollView>
+      {props.NUMBER_OF_PAYERS.length >= 2 ? (
+        <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
+          {props.NUMBER_OF_PAYERS.filter(
+            (filteredData) => filteredData.id <= 2
+          ).map((data) => {
+            return (
+              <GlobalButton
+                styleButtonContainer={styles.selectBillPayersButtonContainer}
+                styleButtonText={styles.selectBillPayersButtonText}
+                title={data.id}
+                key={data.id}
+                handleButtonPress={() => {
+                  props.handleSelectBillPayersPress(data.id);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : null}
+      {props.NUMBER_OF_PAYERS.length >= 4 ? (
+        <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
+          {props.NUMBER_OF_PAYERS.filter(
+            (filteredData) => filteredData.id <= 4 && filteredData.id > 2
+          ).map((data) => {
+            return (
+              <GlobalButton
+                styleButtonContainer={styles.selectBillPayersButtonContainer}
+                styleButtonText={styles.selectBillPayersButtonText}
+                title={data.id}
+                key={data.id}
+                handleButtonPress={() => {
+                  props.handleSelectBillPayersPress(data.id);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : null}
+      {props.NUMBER_OF_PAYERS.length >= 6 ? (
+        <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
+          {props.NUMBER_OF_PAYERS.filter(
+            (filteredData) => filteredData.id <= 6 && filteredData.id > 4
+          ).map((data) => {
+            return (
+              <GlobalButton
+                styleButtonContainer={styles.selectBillPayersButtonContainer}
+                styleButtonText={styles.selectBillPayersButtonText}
+                title={data.id}
+                key={data.id}
+                handleButtonPress={() => {
+                  props.handleSelectBillPayersPress(data.id);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : null}
+      {props.NUMBER_OF_PAYERS.length >= 8 ? (
+        <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
+          {props.NUMBER_OF_PAYERS.filter(
+            (filteredData) => filteredData.id <= 8 && filteredData.id > 6
+          ).map((data) => {
+            return (
+              <GlobalButton
+                styleButtonContainer={styles.selectBillPayersButtonContainer}
+                styleButtonText={styles.selectBillPayersButtonText}
+                title={data.id}
+                key={data.id}
+                handleButtonPress={() => {
+                  props.handleSelectBillPayersPress(data.id);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : null}
+      {props.NUMBER_OF_PAYERS.length >= 10 ? (
+        <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
+          {props.NUMBER_OF_PAYERS.filter(
+            (filteredData) => filteredData.id <= 10 && filteredData.id > 8
+          ).map((data) => {
+            return (
+              <GlobalButton
+                styleButtonContainer={styles.selectBillPayersButtonContainer}
+                styleButtonText={styles.selectBillPayersButtonText}
+                title={data.id}
+                key={data.id}
+                handleButtonPress={() => {
+                  props.handleSelectBillPayersPress(data.id);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : null}
+      {props.NUMBER_OF_PAYERS.length > 10 ? (
+        <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
+          {props.NUMBER_OF_PAYERS.filter(
+            (filteredData) => filteredData.id === "more..."
+          ).map((data) => {
+            return (
+              <GlobalButton
+                styleButtonContainer={styles.selectBillPayersButtonContainer}
+                styleButtonText={styles.selectBillPayersButtonText}
+                title={data.id}
+                key={data.id}
+                handleButtonPress={() => {
+                  props.handleSelectBillPayersPress(data.id);
+                }}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : null}
     </View>
   );
 };

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import * as billActions from "../../store/actions/Bill";
+import * as payersActions from "../../store/actions/Payers";
 import { useDispatch } from "react-redux";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
@@ -29,6 +30,7 @@ const DispatchBillButton = (props) => {
             props.bill.numberOfBillPayers
           )
         );
+        dispatch(payersActions.createPayers(props.bill.billAmount, props.bill.numberOfBillPayers));
     }
 
     props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);

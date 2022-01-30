@@ -17,7 +17,6 @@ import PlatformsCollection from "../../constants/PlatformsCollection";
 import ScreenNavigationSCreenNames from "../../constants/ScreenNavigationScreenNames";
 
 const BillPayer = (props) => {
-  console.log(props.payerData);
   let randomGeneratedColor = PayerAvatarColors.find(
     (randomColor) => randomColor.id === props.randomNumber
   );

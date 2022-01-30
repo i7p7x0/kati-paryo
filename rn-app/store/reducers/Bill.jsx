@@ -8,9 +8,9 @@ const initialState = {
 export const billReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BILL:
+      state = initialState;
       state.billAmount = action.billAmount;
       state.numberOfBillPayers = action.numberOfBillPayers;
-      console.log(state);
       return state;
     default:
       return state;

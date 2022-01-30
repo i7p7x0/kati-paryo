@@ -13,6 +13,10 @@ const GlobalTextInput = (props) => {
         placeholder={props.placeholder}
         keyboardType={props.keyboardType}
         onChangeText={handleChangeText}
+        onPressIn={() => {
+          console.log("Hello");
+        }}
+        value={props.value}
       />
     </View>
   );

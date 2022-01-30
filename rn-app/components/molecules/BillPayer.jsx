@@ -41,7 +41,7 @@ const BillPayer = (props) => {
           padding: 10,
           justifyContent: "center",
           alignItems: "center",
-
+          width:"40%",
           borderRadius: 8,
         }}
       >

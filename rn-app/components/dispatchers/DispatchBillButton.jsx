@@ -37,7 +37,7 @@ const DispatchBillButton = (props) => {
           )
         );
 
-        props.handleResetStates();
+      // props.handleResetStates();
     }
 
     props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);

@@ -21,7 +21,20 @@ const DispatchFinalPayerButton = (props) => {
   }
 
   const handleDispatchAction = () => {
-    props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    let updatedPayers = props.payerData.otherPayers.filter((filteredPayers) => {
+      return filteredPayers.payerId !== props.payerData.adjustmentPayer.payerId;
+    });
+    updatedPayers.push(props.payerData.adjustmentPayer);
+    updatedPayers.push(props.payerData.editedPayer);
+
+    dispatch(
+      payersActions.updatePayers(
+        updatedPayers.sort((a, b) => (a.payerId > b.payerId ? 1 : -1))
+      )
+    );
+
+    props.resetPayerStates();
+    props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
   };
 
   return (

@@ -36,6 +36,21 @@ const EditPayerScreen = (props) => {
 
   const [modalState, setModalState] = useState(false);
 
+  const resetPayerStates = () => {
+    setPayerTypes(() => {
+      return {
+        editedPayer: billPayersNonAdjusted.find((editedPayer) => {
+          return editedPayer.payerId === payerId;
+        }),
+        otherPayers: billPayersNonAdjusted.filter((filteredPayers) => {
+          return filteredPayers.payerId !== payerId;
+        }),
+        adjustmentPayer: "",
+      };
+    });
+    setModalState(false);
+  };
+
   const handleAdjustBillPress = () => {
     setModalState(true);
   };
@@ -91,13 +106,13 @@ const EditPayerScreen = (props) => {
       (newAdjustmentPayerPayingAmount / Number(bill.billAmount)) * 100;
 
     let newEditedPayerValues = {
-      payerAmount: newEditedPayerPayingAmount.toFixed(2).toString(),
+      payerAmount: newEditedPayerPayingAmount.toFixed(0).toString(),
       payerId: payerTypes.editedPayer.payerId,
       payerName: payerTypes.editedPayer.payerName,
       payerPayingPercent: newEditedPayerPayingPercent.toFixed(2).toString(),
     };
     let newAdjustmentPayerValues = {
-      payerAmount: newAdjustmentPayerPayingAmount.toFixed(2).toString(),
+      payerAmount: newAdjustmentPayerPayingAmount.toFixed(0).toString(),
       payerId: payerTypes.adjustmentPayer.payerId,
       payerName: payerTypes.adjustmentPayer.payerName,
       payerPayingPercent: newAdjustmentPayerPayingPercent.toFixed(2).toString(),
@@ -132,13 +147,13 @@ const EditPayerScreen = (props) => {
       (newAdjustmentPayerPayingAmount / Number(bill.billAmount)) * 100;
 
     let newEditedPayerValues = {
-      payerAmount: newEditedPayerPayingAmount.toFixed(2).toString(),
+      payerAmount: newEditedPayerPayingAmount.toFixed(0).toString(),
       payerId: payerTypes.editedPayer.payerId,
       payerName: payerTypes.editedPayer.payerName,
       payerPayingPercent: newEditedPayerPayingPercent.toFixed(2).toString(),
     };
     let newAdjustmentPayerValues = {
-      payerAmount: newAdjustmentPayerPayingAmount.toFixed(2).toString(),
+      payerAmount: newAdjustmentPayerPayingAmount.toFixed(0).toString(),
       payerId: payerTypes.adjustmentPayer.payerId,
       payerName: payerTypes.adjustmentPayer.payerName,
       payerPayingPercent: newAdjustmentPayerPayingPercent.toFixed(2).toString(),
@@ -216,6 +231,8 @@ const EditPayerScreen = (props) => {
           styleButtonContainer={styles.submitButtonContainer}
           styleButtonText={styles.submitButtonText}
           navigation={props.navigation}
+          payerData={payerTypes}
+          resetPayerStates={resetPayerStates}
         />
       </View>
     </TouchableWithoutFeedback>

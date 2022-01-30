@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import {ScrollView, StyleSheet } from "react-native";
 
 import BillPayer from "./BillPayer";
 
 const PayerScrollView = (props) => {
   return (
-    <View style={{ width: "80%" }}>
+    <ScrollView style={{ width: "80%"}}>
       {props.payerData.length >= 1 ? (
         <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
           {props.payerData
@@ -113,7 +113,7 @@ const PayerScrollView = (props) => {
             })}
         </ScrollView>
       ) : null}
-    </View>
+    </ScrollView>
   );
 };
 

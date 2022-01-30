@@ -14,6 +14,7 @@ const PayerScrollView = (props) => {
               return (
                 <BillPayer
                   key={payer.payerId}
+                  payerId={payer.payerId}
                   payerName={payer.payerName}
                   payerAmount={payer.payerAmount}
                   payerPayingPercent={payer.payerPayingPercent}
@@ -33,7 +34,9 @@ const PayerScrollView = (props) => {
             .map((payer) => {
               return (
                 <BillPayer
+                  payerData={props.payerData}
                   key={payer.payerId}
+                  payerId={payer.payerId}
                   payerName={payer.payerName}
                   payerAmount={payer.payerAmount}
                   payerPayingPercent={payer.payerPayingPercent}
@@ -53,7 +56,9 @@ const PayerScrollView = (props) => {
             .map((payer) => {
               return (
                 <BillPayer
+                  payerData={props.payerData}
                   key={payer.payerId}
+                  payerId={payer.payerId}
                   payerName={payer.payerName}
                   payerAmount={payer.payerAmount}
                   payerPayingPercent={payer.payerPayingPercent}
@@ -73,7 +78,9 @@ const PayerScrollView = (props) => {
             .map((payer) => {
               return (
                 <BillPayer
+                  payerData={props.payerData}
                   key={payer.payerId}
+                  payerId={payer.payerId}
                   payerName={payer.payerName}
                   payerAmount={payer.payerAmount}
                   payerPayingPercent={payer.payerPayingPercent}
@@ -93,7 +100,9 @@ const PayerScrollView = (props) => {
             .map((payer) => {
               return (
                 <BillPayer
+                  payerData={props.payerData}
                   key={payer.payerId}
+                  payerId={payer.payerId}
                   payerName={payer.payerName}
                   payerAmount={payer.payerAmount}
                   payerPayingPercent={payer.payerPayingPercent}

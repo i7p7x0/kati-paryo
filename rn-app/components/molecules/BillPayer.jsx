@@ -17,6 +17,7 @@ import PlatformsCollection from "../../constants/PlatformsCollection";
 import ScreenNavigationSCreenNames from "../../constants/ScreenNavigationScreenNames";
 
 const BillPayer = (props) => {
+  console.log(props.payerData);
   let randomGeneratedColor = PayerAvatarColors.find(
     (randomColor) => randomColor.id === props.randomNumber
   );
@@ -29,12 +30,15 @@ const BillPayer = (props) => {
 
   return (
     <TouchableWrapper
+      key={props.payerId}
       onPress={() => {
-        props.navigation.navigate(ScreenNavigationSCreenNames.editPayerScreen);
+        props.navigation.navigate(ScreenNavigationSCreenNames.editPayerScreen, {
+          payerId: props.payerId,
+          payerData: props.payerData,
+        });
       }}
     >
       <View
-        key={props.key}
         style={{
           backgroundColor: randomGeneratedColor.colorCode,
           margin: 12,

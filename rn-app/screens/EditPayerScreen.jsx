@@ -6,9 +6,10 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 
 const EditPayerScreen = (props) => {
+  const { payerId, payerData } = props.route.params;
   return (
     <View style={styles.screen}>
-      <Text>This is EditPayerScreen</Text>
+      <Text>{payerId}</Text>
       <Button
         title="Go Back"
         onPress={() => {

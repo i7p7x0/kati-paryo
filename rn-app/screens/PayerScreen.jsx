@@ -18,7 +18,10 @@ const PayerScreen = (props) => {
         i,
         "payer " + i,
         (bill.billAmount / bill.numberOfBillPayers).toFixed(2),
-        (((bill.billAmount/bill.numberOfBillPayers)/bill.billAmount)*100).toFixed(2)
+        (
+          (bill.billAmount / bill.numberOfBillPayers / bill.billAmount) *
+          100
+        ).toFixed(2)
       )
     );
   }
@@ -31,8 +34,8 @@ const PayerScreen = (props) => {
         <Text>Total: {bill.billAmount}</Text>
         <Text>Number fo Payers: {bill.numberOfBillPayers}</Text>
       </View> */}
-      <PayerScrollView payerData={payersState} navigation={props.navigation}/>
-     
+      <PayerScrollView payerData={payersState} navigation={props.navigation} />
+
       <Button
         title="go back"
         onPress={() => {

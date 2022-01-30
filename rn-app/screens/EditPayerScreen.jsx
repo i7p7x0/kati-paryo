@@ -21,6 +21,7 @@ import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPay
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
+  const bill = useSelector((state) => state.bill);
   const { payerId } = props.route.params;
 
   const [payerTypes, setPayerTypes] = useState({
@@ -70,6 +71,88 @@ const EditPayerScreen = (props) => {
         adjustmentPayer: prevValue.adjustmentPayer,
       };
     });
+  };
+
+  const handlePayMoreButtonPress = () => {
+    let combinedSum =
+      Number(payerTypes.editedPayer.payerAmount) +
+      Number(payerTypes.adjustmentPayer.payerAmount);
+
+    let newEditedPayerPayingAmount =
+      Number(payerTypes.editedPayer.payerAmount) + combinedSum / 10;
+
+    let newEditedPayerPayingPercent =
+      (newEditedPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newAdjustmentPayerPayingAmount =
+      Number(payerTypes.adjustmentPayer.payerAmount) - combinedSum / 10;
+
+    let newAdjustmentPayerPayingPercent =
+      (newAdjustmentPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newEditedPayerValues = {
+      payerAmount: newEditedPayerPayingAmount.toFixed(2).toString(),
+      payerId: payerTypes.editedPayer.payerId,
+      payerName: payerTypes.editedPayer.payerName,
+      payerPayingPercent: newEditedPayerPayingPercent.toFixed(2).toString(),
+    };
+    let newAdjustmentPayerValues = {
+      payerAmount: newAdjustmentPayerPayingAmount.toFixed(2).toString(),
+      payerId: payerTypes.adjustmentPayer.payerId,
+      payerName: payerTypes.adjustmentPayer.payerName,
+      payerPayingPercent: newAdjustmentPayerPayingPercent.toFixed(2).toString(),
+    };
+    if (newAdjustmentPayerPayingAmount >= 0) {
+      setPayerTypes((prevValue) => {
+        return {
+          editedPayer: newEditedPayerValues,
+          otherPayers: prevValue.otherPayers,
+          adjustmentPayer: newAdjustmentPayerValues,
+        };
+      });
+    }
+    return;
+  };
+
+  const handlePayLessButtonPress = () => {
+    let combinedSum =
+      Number(payerTypes.editedPayer.payerAmount) +
+      Number(payerTypes.adjustmentPayer.payerAmount);
+
+    let newEditedPayerPayingAmount =
+      Number(payerTypes.editedPayer.payerAmount) - combinedSum / 10;
+
+    let newEditedPayerPayingPercent =
+      (newEditedPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newAdjustmentPayerPayingAmount =
+      Number(payerTypes.adjustmentPayer.payerAmount) + combinedSum / 10;
+
+    let newAdjustmentPayerPayingPercent =
+      (newAdjustmentPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newEditedPayerValues = {
+      payerAmount: newEditedPayerPayingAmount.toFixed(2).toString(),
+      payerId: payerTypes.editedPayer.payerId,
+      payerName: payerTypes.editedPayer.payerName,
+      payerPayingPercent: newEditedPayerPayingPercent.toFixed(2).toString(),
+    };
+    let newAdjustmentPayerValues = {
+      payerAmount: newAdjustmentPayerPayingAmount.toFixed(2).toString(),
+      payerId: payerTypes.adjustmentPayer.payerId,
+      payerName: payerTypes.adjustmentPayer.payerName,
+      payerPayingPercent: newAdjustmentPayerPayingPercent.toFixed(2).toString(),
+    };
+    if (newEditedPayerPayingAmount >= 0) {
+      setPayerTypes((prevValue) => {
+        return {
+          editedPayer: newEditedPayerValues,
+          otherPayers: prevValue.otherPayers,
+          adjustmentPayer: newAdjustmentPayerValues,
+        };
+      });
+    }
+    return;
   };
 
   return (
@@ -124,6 +207,8 @@ const EditPayerScreen = (props) => {
           <EditPlayerBillADjustment
             editedPayer={payerTypes.editedPayer}
             adjustmentPayer={payerTypes.adjustmentPayer}
+            handlePayMoreButtonPress={handlePayMoreButtonPress}
+            handlePayLessButtonPress={handlePayLessButtonPress}
           />
         ) : null}
         <DispatchFinalPayerButton

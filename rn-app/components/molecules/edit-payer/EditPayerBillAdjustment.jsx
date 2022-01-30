@@ -52,14 +52,14 @@ const EditPayerBillAdjustment = (props) => {
         </View>
       </View>
       <View style={styles.editPayerChild}>
-        <TouchableWrapper>
+        <TouchableWrapper onPress={props.handlePayMoreButtonPress}>
           <View style={styles.increaseAmount}>
             <Text style={styles.plusMinusText}>
               Pay More <AntDesign name="plus" size={24} color="white" />
             </Text>
           </View>
         </TouchableWrapper>
-        <TouchableWrapper>
+        <TouchableWrapper onPress={props.handlePayLessButtonPress}>
           <View style={styles.decreaseAmount}>
             <Text style={styles.plusMinusText}>
               Pay Less <AntDesign name="minus" size={24} color="white" />

@@ -12,7 +12,6 @@ import { AntDesign } from "@expo/vector-icons";
 
 import ColorsCollection from "../../../constants/ColorsCollection";
 import PlatformsCollection from "../../../constants/PlatformsCollection";
-import GlobalButton from "../../atoms/GlobalButton";
 
 const EditPayerBillAdjustment = (props) => {
   let TouchableWrapper = TouchableOpacity;
@@ -68,13 +67,7 @@ const EditPayerBillAdjustment = (props) => {
           </View>
         </TouchableWrapper>
       </View>
-      <View style={styles.editPayerChild}>
-        <GlobalButton
-          title="Done"
-          styleButtonContainer={styles.submitButtonContainer}
-          styleButtonText={styles.submitButtonText}
-        />
-      </View>
+      <View style={styles.editPayerChild}></View>
     </View>
   );
 };

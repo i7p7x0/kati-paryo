@@ -2,25 +2,22 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
-  Button,
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Modal,
   ScrollView,
   Keyboard,
 } from "react-native";
 import { useSelector } from "react-redux";
-import { FontAwesome } from "@expo/vector-icons";
+
 // CUSTOM COMPONENTS
 
-import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import GlobalTextInput from "../components/atoms/GlobalTextInput";
 import GlobalModal from "../components/atoms/GlobalModal";
 import EditPlayerBillADjustment from "../components/molecules/edit-payer/EditPayerBillAdjustment";
 import GlobalButton from "../components/atoms/GlobalButton";
 import ColorsCollection from "../constants/ColorsCollection";
+import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPayersButton";
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
@@ -112,12 +109,6 @@ const EditPayerScreen = (props) => {
               );
             })}
           </ScrollView>
-          <Button
-            title="Close"
-            onPress={() => {
-              setModalState(false);
-            }}
-          />
         </GlobalModal>
         {payerTypes.adjustmentPayer === "" ? (
           <GlobalButton
@@ -125,6 +116,7 @@ const EditPayerScreen = (props) => {
               contribution"
             styleButtonContainer={styles.adjustButtonContainer}
             styleButtonText={styles.adjustButtonText}
+            handleButtonPress={handleAdjustBillPress}
           />
         ) : null}
 
@@ -134,6 +126,12 @@ const EditPayerScreen = (props) => {
             adjustmentPayer={payerTypes.adjustmentPayer}
           />
         ) : null}
+        <DispatchFinalPayerButton
+          title="Done"
+          styleButtonContainer={styles.submitButtonContainer}
+          styleButtonText={styles.submitButtonText}
+          navigation={props.navigation}
+        />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -168,6 +166,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  submitButtonContainer: { backgroundColor: ColorsCollection.primary },
+  submitButtonText: { color: ColorsCollection.light },
 });
 
 export default EditPayerScreen;

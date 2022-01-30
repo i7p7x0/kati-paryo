@@ -8,13 +8,12 @@ import {
   TouchableNativeFeedback,
 } from "react-native";
 
-import * as billActions from "../../store/actions/Bill";
 import * as payersActions from "../../store/actions/Payers";
 import { useDispatch } from "react-redux";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
 
-const DispatchBillButton = (props) => {
+const DispatchFinalPayerButton = (props) => {
   const dispatch = useDispatch();
   let TouchableWrapper = TouchableOpacity;
   if (Platform.OS === PlatformsCollection.android) {
@@ -22,25 +21,7 @@ const DispatchBillButton = (props) => {
   }
 
   const handleDispatchAction = () => {
-    switch (props.dispatchAction) {
-      case billActions.ADD_BILL:
-        dispatch(
-          billActions.addBill(
-            props.bill.billAmount,
-            props.bill.numberOfBillPayers
-          )
-        );
-        dispatch(
-          payersActions.createPayers(
-            props.bill.billAmount,
-            props.bill.numberOfBillPayers
-          )
-        );
-
-        props.handleResetStates();
-    }
-
-    props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
+    props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
   };
 
   return (
@@ -70,4 +51,4 @@ const styles = StyleSheet.create({
   styleButtonText: {},
 });
 
-export default DispatchBillButton;
+export default DispatchFinalPayerButton;

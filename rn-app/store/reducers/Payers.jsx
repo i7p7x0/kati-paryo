@@ -6,7 +6,8 @@ const initialState = [];
 export const payersReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_PAYERS:
-      state = initialState;
+      state = [];
+
       for (let i = 1; i <= action.numberOfBillPayers; i++) {
         state.push(
           new Payer(

@@ -9,59 +9,8 @@ import GlobalButton from "../atoms/GlobalButton";
 const HorizontalNumberOfPeopleSelector = (props) => {
   return (
     <View>
-      <ScrollView
-        contentContainerStyle={{ flexDirection: "row" }}
-        scrollEnabled={false}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-      >
-        {props.NUMBER_OF_PAYERS.filter((filterData) => filterData.id <= 4).map(
-          (data) => {
-            return (
-              <GlobalButton
-                styleButtonContainer={styles.selectBillPayersButtonContainer}
-                styleButtonText={styles.selectBillPayersButtonText}
-                title={data.id}
-                key={data.id}
-                handleButtonPress={() => {
-                  props.handleSelectBillPayersPress(data.id);
-                }}
-              />
-            );
-          }
-        )}
-      </ScrollView>
-      <ScrollView
-        contentContainerStyle={{ flexDirection: "row" }}
-        scrollEnabled={false}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-      >
-        {props.NUMBER_OF_PAYERS.filter(
-          (filterData) => filterData.id > 4 && filterData.id <= 8
-        ).map((data) => {
-          return (
-            <GlobalButton
-              styleButtonContainer={styles.selectBillPayersButtonContainer}
-              styleButtonText={styles.selectBillPayersButtonText}
-              title={data.id}
-              key={data.id}
-              handleButtonPress={() => {
-                props.handleSelectBillPayersPress(data.id);
-              }}
-            />
-          );
-        })}
-      </ScrollView>
-      <ScrollView
-        contentContainerStyle={{ flexDirection: "row" }}
-        scrollEnabled={false}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-      >
-        {props.NUMBER_OF_PAYERS.filter(
-          (filterData) => filterData.id > 8 || filterData.id === "more..."
-        ).map((data) => {
+      <ScrollView>
+        {props.NUMBER_OF_PAYERS.map((data) => {
           return (
             <GlobalButton
               styleButtonContainer={styles.selectBillPayersButtonContainer}

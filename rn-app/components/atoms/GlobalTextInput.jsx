@@ -16,6 +16,7 @@ const GlobalTextInput = (props) => {
         onPressIn={() => {
           console.log("Hello");
         }}
+        value={props.value}
       />
     </View>
   );

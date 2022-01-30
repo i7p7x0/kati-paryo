@@ -9,7 +9,7 @@ import ScreenNavigation from "./navigation/ScreenNavigation";
 export default function App() {
   const rootReducer = combineReducers({
     bill: billReducer,
-    payer: payersReducer,
+    payers: payersReducer,
   });
   const store = createStore(rootReducer);
 

@@ -2,12 +2,10 @@ import React from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
   StyleSheet,
-  Alert,
 } from "react-native";
 import { Octicons } from "@expo/vector-icons";
 
@@ -33,7 +31,6 @@ const BillPayer = (props) => {
       onPress={() => {
         props.navigation.navigate(ScreenNavigationSCreenNames.editPayerScreen, {
           payerId: props.payerId,
-          payerData: props.payerData,
         });
       }}
     >

@@ -5,4 +5,6 @@ export default {
   quaternary: "#161853",
   light: "#FFFFFF",
   dark: "#191919",
+  red: "#B33030",
+  green: "#4E9F3D",
 };

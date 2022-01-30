@@ -30,7 +30,12 @@ const DispatchBillButton = (props) => {
             props.bill.numberOfBillPayers
           )
         );
-        dispatch(payersActions.createPayers(props.bill.billAmount, props.bill.numberOfBillPayers));
+        dispatch(
+          payersActions.createPayers(
+            props.bill.billAmount,
+            props.bill.numberOfBillPayers
+          )
+        );
     }
 
     props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);

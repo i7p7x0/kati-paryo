@@ -9,7 +9,7 @@ const GlobalTextInput = (props) => {
   return (
     <View style={styles.inputAmount}>
       <TextInput
-        style={styles.amountTextInput}
+        style={styles.amountTextInput} textAlign={'center'}
         placeholder={props.placeholder}
         keyboardType={props.keyboardType}
         onChangeText={handleChangeText}

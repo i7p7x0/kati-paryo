@@ -18,6 +18,7 @@ import EditPlayerBillADjustment from "../components/molecules/edit-payer/EditPay
 import GlobalButton from "../components/atoms/GlobalButton";
 import ColorsCollection from "../constants/ColorsCollection";
 import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPayersButton";
+import * as validationInputs from "../validations/validateInputs";
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
@@ -77,7 +78,6 @@ const EditPayerScreen = (props) => {
       payerName: newName,
       payerPayingPercent: payerTypes.editedPayer.payerPayingPercent,
     };
-    console.log(newEditedPayer);
 
     setPayerTypes((prevValue) => {
       return {
@@ -185,7 +185,7 @@ const EditPayerScreen = (props) => {
             styleButtonText={styles.adjustButtonText}
           />
           <GlobalTextInput
-            placeholder="Edit Player Name"
+            placeholder="Edit Player Name (2 - 10 characters)"
             value={payerTypes.editedPayer.payerName}
             handleChangeText={handleChangeText}
           />
@@ -230,10 +230,16 @@ const EditPayerScreen = (props) => {
             handlePayLessButtonPress={handlePayLessButtonPress}
           />
         ) : null}
+
         <DispatchFinalPayerButton
           title="Done"
           styleButtonContainer={styles.submitButtonContainer}
           styleButtonText={styles.submitButtonText}
+          disabled={
+            validationInputs.validatePayer(payerTypes.editedPayer)
+              ? false
+              : true
+          }
           navigation={props.navigation}
           payerData={payerTypes}
           resetPayerStates={resetPayerStates}
@@ -268,7 +274,6 @@ const styles = StyleSheet.create({
     color: ColorsCollection.light,
   },
   editNameContainer: {
-    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },

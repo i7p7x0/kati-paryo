@@ -16,6 +16,7 @@ import GlobalButton from "../components/atoms/GlobalButton";
 import GlobalModal from "../components/atoms/GlobalModal";
 import HorizontalNumberOfPeopleSelector from "../components/molecules/HorizontalNumberOfPeopleSelector";
 import DispatchBillButton from "../components/dispatchers/DispatchBillButton";
+import * as validationInputs from "../validations/validateInputs";
 
 const BillScreen = (props) => {
   const [billState, setBillState] = useState({
@@ -138,10 +139,18 @@ const BillScreen = (props) => {
         <DispatchBillButton
           styleButtonContainer={styles.submitButtonContainer}
           styleButtonText={styles.submitButtonText}
-          title="Go"
+          title="Proceed"
           dispatchAction={billActions.ADD_BILL}
           bill={billState}
           navigation={props.navigation}
+          disabled={
+            validationInputs.checkValidAmount(billState.billAmount) &&
+            validationInputs.checkValidNumberOfPayers(
+              billState.numberOfBillPayers
+            )
+              ? false
+              : true
+          }
           handleResetStates={handleResetStates}
         />
       </View>

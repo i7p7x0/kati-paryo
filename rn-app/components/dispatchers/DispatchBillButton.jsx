@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   Platform,
+  Alert,
   TouchableOpacity,
   TouchableNativeFeedback,
 } from "react-native";
@@ -13,6 +14,8 @@ import * as payersActions from "../../store/actions/Payers";
 import { useDispatch } from "react-redux";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
+import * as validationInputs from "../../validations/validateInputs";
+import { Entypo } from "@expo/vector-icons";
 
 const DispatchBillButton = (props) => {
   const dispatch = useDispatch();
@@ -22,6 +25,13 @@ const DispatchBillButton = (props) => {
   }
 
   const handleDispatchAction = () => {
+    if (
+      !validationInputs.checkValidAmount(props.bill.billAmount) ||
+      !validationInputs.checkValidNumberOfPayers(props.bill.numberOfBillPayers)
+    ) {
+      Alert.alert("Invalid Input");
+      return;
+    }
     switch (props.dispatchAction) {
       case billActions.ADD_BILL:
         dispatch(
@@ -48,11 +58,19 @@ const DispatchBillButton = (props) => {
       onPress={handleDispatchAction}
       disabled={props.disabled || false}
     >
-      <View style={[styles.styleButtonContainer, props.styleButtonContainer]}>
-        <Text style={(styles.styleButtonText, props.styleButtonText)}>
-          {props.title}
-        </Text>
-      </View>
+      {props.disabled ? (
+        <View style={[styles.styleButtonContainer, styles.disabledButton]}>
+          <Text style={(styles.styleButtonText, styles.disabledButtonText)}>
+            {props.title} <Entypo name="block" size={24} color="black" />
+          </Text>
+        </View>
+      ) : (
+        <View style={[styles.styleButtonContainer, props.styleButtonContainer]}>
+          <Text style={(styles.styleButtonText, props.styleButtonText)}>
+            {props.title}
+          </Text>
+        </View>
+      )}
     </TouchableWrapper>
   );
 };
@@ -68,6 +86,12 @@ const styles = StyleSheet.create({
     elevation: 20,
   },
   styleButtonText: {},
+  disabledButton: {
+    backgroundColor: "#EBEBE4",
+  },
+  disabledButtonText: {
+    color: "black",
+  },
 });
 
 export default DispatchBillButton;

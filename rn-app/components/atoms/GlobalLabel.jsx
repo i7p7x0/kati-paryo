@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Dimensions, StyleSheet } from "react-native";
 
 import ColorsCollection from "../../constants/ColorsCollection";
 
@@ -14,8 +14,10 @@ const GlobalLabel = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: ColorsCollection.tertiary,
-    padding: 10,
-    margin:10,
+    paddingHorizontal: Dimensions.get("window").width / 12,
+    paddingVertical: Dimensions.get("window").height / 80,
+    marginHorizontal: Dimensions.get("window").width / 80,
+    marginVertical: Dimensions.get("window").height / 80,
     borderRadius: 8,
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 4 },
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
   },
-  text: { color: ColorsCollection.light },
+  text: { color: ColorsCollection.light, fontWeight: "bold" },
 });
 
 export default GlobalLabel;

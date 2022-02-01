@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  Dimensions,
   Platform,
   TouchableOpacity,
   TouchableNativeFeedback,
@@ -31,15 +32,17 @@ const GlobalButton = (props) => {
 const styles = StyleSheet.create({
   styleButtonContainer: {
     borderRadius: 8,
-    padding: 10,
-    margin: 10,
+    paddingHorizontal: Dimensions.get("window").width / 10,
+    paddingVertical: Dimensions.get("window").height / 50,
+    marginHorizontal: Dimensions.get("window").width / 80,
+    marginVertical: Dimensions.get("window").height / 80,
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 20,
   },
-  styleButtonText: {},
+  styleButtonText: { fontWeight: "bold" },
 });
 
 export default GlobalButton;

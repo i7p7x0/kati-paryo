@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   Keyboard,
+  Dimensions,
   TouchableWithoutFeedback,
 } from "react-native";
 
@@ -109,7 +110,7 @@ const BillScreen = (props) => {
         />
 
         {billState.numberOfBillPayers.length === 0 && !isCustomInputRequired ? (
-          <View style={styles.numberOfPeople}>
+          <View>
             <GlobalModal visible={modalState}>
               <View style={styles.modalContent}>
                 <HorizontalNumberOfPeopleSelector
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    margin: 20,
+    marginHorizontal: Dimensions.get("window").width / 90,
   },
   selectBillPayersButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: "20%",
+    marginVertical: (250 / Dimensions.get("window").width) * 100,
   },
 });
 

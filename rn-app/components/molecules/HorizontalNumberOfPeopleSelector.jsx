@@ -5,10 +5,12 @@ import { View, StyleSheet, ScrollView } from "react-native";
 
 import ColorsCollection from "../../constants/ColorsCollection";
 import GlobalButton from "../atoms/GlobalButton";
+import GlobalLabel from "../atoms/GlobalLabel";
 
 const HorizontalNumberOfPeopleSelector = (props) => {
   return (
-    <View>
+    <View style={styles.screen}>
+      <GlobalLabel content="Select number of payers" />
       {props.NUMBER_OF_PAYERS.length >= 2 ? (
         <ScrollView contentContainerStyle={{ flexDirection: "row" }}>
           {props.NUMBER_OF_PAYERS.filter(
@@ -128,6 +130,11 @@ const HorizontalNumberOfPeopleSelector = (props) => {
 };
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   selectBillPayersButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,
   },

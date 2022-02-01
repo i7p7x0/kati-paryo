@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
@@ -46,9 +46,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 80,
+    marginVertical: Dimensions.get("window").height / 9,
   },
-  buttonsContainer: { flexDirection: "row", marginVertical: 10 },
+  buttonsContainer: {
+    flexDirection: "row",
+    marginVertical: Dimensions.get("window").height / 50,
+  },
   submitButton: {
     backgroundColor: ColorsCollection.primary,
   },

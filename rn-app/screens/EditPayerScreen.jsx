@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
   Keyboard,
 } from "react-native";
 import { useSelector } from "react-redux";
@@ -255,18 +256,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  editedPayer: {
-    margin: 10,
-    padding: 10,
-  },
-  textinput: {
-    padding: 10,
-    borderBottomWidth: 2,
-  },
-  temporaryPadding: {
-    margin: 10,
-    padding: 10,
-  },
+
   adjustButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,
   },
@@ -282,8 +272,10 @@ const styles = StyleSheet.create({
   selectAdjustmentPayerContainer: {
     backgroundColor: ColorsCollection.tertiary,
     borderRadius: 8,
-    margin: 10,
-    padding: 10,
+    marginHorizontal: Dimensions.get("window").width / 80,
+    marginVertical: Dimensions.get("window").height / 80,
+    paddingHorizontal: Dimensions.get("window").width / 80,
+    paddingVertical: Dimensions.get("window").height / 80,
     alignItems: "center",
   },
   selectAdjustmentPayerText: {
@@ -292,7 +284,7 @@ const styles = StyleSheet.create({
   selectAdjustmentPayerParentContainer: {
     flex: 1,
     justifyContent: "center",
-    marginTop: "40%",
+    marginTop: Dimensions.get("window").height / 5,
     alignItems: "center",
   },
 });

@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   Keyboard,
+  Dimensions,
   TouchableWithoutFeedback,
 } from "react-native";
 
@@ -13,17 +14,32 @@ import ColorsCollection from "../constants/ColorsCollection";
 import NUMBER_OF_PAYERS from "../data/NUMBER_OF_PAYERS";
 import GlobalTextInput from "../components/atoms/GlobalTextInput";
 import GlobalButton from "../components/atoms/GlobalButton";
+import GlobalModal from "../components/atoms/GlobalModal";
 import HorizontalNumberOfPeopleSelector from "../components/molecules/HorizontalNumberOfPeopleSelector";
 import DispatchBillButton from "../components/dispatchers/DispatchBillButton";
+import * as validationInputs from "../validations/validateInputs";
 
 const BillScreen = (props) => {
   const [billState, setBillState] = useState({
     billAmount: "",
     numberOfBillPayers: "",
   });
-
   const [isCustomInputRequired, setIsCustomInputRequired] = useState(false);
   const [customNumberOfPeople, setCustomNumberOfPeople] = useState("");
+  const [modalState, setModalState] = useState(false);
+
+  const handleResetStates = () => {
+    setBillState(() => {
+      return {
+        billAmount: "",
+        numberOfBillPayers: "",
+      };
+    });
+    setIsCustomInputRequired(false);
+    setCustomNumberOfPeople("");
+    setModalState(false);
+    console.log("Hello World");
+  };
 
   const handleChangeText = (text) => {
     let enteredBillAmount = text;
@@ -53,6 +69,7 @@ const BillScreen = (props) => {
     if (billState.numberOfBillPayers.length === 0) {
       setIsCustomInputRequired(false);
     }
+    setModalState(true);
     setCustomNumberOfPeople("");
     setBillState((prevValue) => {
       return {
@@ -93,11 +110,15 @@ const BillScreen = (props) => {
         />
 
         {billState.numberOfBillPayers.length === 0 && !isCustomInputRequired ? (
-          <View style={styles.numberOfPeople}>
-            <HorizontalNumberOfPeopleSelector
-              NUMBER_OF_PAYERS={NUMBER_OF_PAYERS}
-              handleSelectBillPayersPress={handleSelectBillPayersPress}
-            />
+          <View>
+            <GlobalModal visible={modalState}>
+              <View style={styles.modalContent}>
+                <HorizontalNumberOfPeopleSelector
+                  NUMBER_OF_PAYERS={NUMBER_OF_PAYERS}
+                  handleSelectBillPayersPress={handleSelectBillPayersPress}
+                />
+              </View>
+            </GlobalModal>
           </View>
         ) : null}
         {isCustomInputRequired ? (
@@ -119,10 +140,19 @@ const BillScreen = (props) => {
         <DispatchBillButton
           styleButtonContainer={styles.submitButtonContainer}
           styleButtonText={styles.submitButtonText}
-          title="Go"
+          title="Proceed"
           dispatchAction={billActions.ADD_BILL}
           bill={billState}
           navigation={props.navigation}
+          disabled={
+            validationInputs.checkValidAmount(billState.billAmount) &&
+            validationInputs.checkValidNumberOfPayers(
+              billState.numberOfBillPayers
+            )
+              ? false
+              : true
+          }
+          handleResetStates={handleResetStates}
         />
       </View>
     </TouchableWithoutFeedback>
@@ -134,7 +164,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    margin: 20,
+    marginHorizontal: Dimensions.get("window").width / 90,
   },
   selectBillPayersButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,
@@ -148,9 +178,7 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: ColorsCollection.light,
   },
-  numberOfPeople: {
-    height: "20%",
-  },
+
   numberOfPeopleR1: {
     flexDirection: "row",
   },
@@ -158,6 +186,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  modalContent: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: (250 / Dimensions.get("window").width) * 100,
   },
 });
 

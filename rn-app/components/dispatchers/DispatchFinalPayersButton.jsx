@@ -4,21 +4,19 @@ import {
   Text,
   StyleSheet,
   Platform,
-  Alert,
-  Dimensions,
   TouchableOpacity,
   TouchableNativeFeedback,
+  Alert,
 } from "react-native";
 
-import * as billActions from "../../store/actions/Bill";
 import * as payersActions from "../../store/actions/Payers";
 import { useDispatch } from "react-redux";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
-import * as validationInputs from "../../validations/validateInputs";
+
 import { Entypo } from "@expo/vector-icons";
 
-const DispatchBillButton = (props) => {
+const DispatchFinalPayerButton = (props) => {
   const dispatch = useDispatch();
   let TouchableWrapper = TouchableOpacity;
   if (Platform.OS === PlatformsCollection.android) {
@@ -26,30 +24,20 @@ const DispatchBillButton = (props) => {
   }
 
   const handleDispatchAction = () => {
-    if (
-      !validationInputs.checkValidAmount(props.bill.billAmount) ||
-      !validationInputs.checkValidNumberOfPayers(props.bill.numberOfBillPayers)
-    ) {
-      Alert.alert("Invalid Input");
-      return;
+    let updatedPayers = props.payerData.otherPayers.filter((filteredPayers) => {
+      return filteredPayers.payerId !== props.payerData.adjustmentPayer.payerId;
+    });
+    if (props.payerData.adjustmentPayer !== "") {
+      updatedPayers.push(props.payerData.adjustmentPayer);
     }
-    switch (props.dispatchAction) {
-      case billActions.ADD_BILL:
-        dispatch(
-          billActions.addBill(
-            props.bill.billAmount,
-            props.bill.numberOfBillPayers
-          )
-        );
-        dispatch(
-          payersActions.createPayers(
-            props.bill.billAmount,
-            props.bill.numberOfBillPayers
-          )
-        );
 
-      // props.handleResetStates();
-    }
+    updatedPayers.push(props.payerData.editedPayer);
+
+    dispatch(
+      payersActions.updatePayers(
+        updatedPayers.sort((a, b) => (a.payerId > b.payerId ? 1 : -1))
+      )
+    );
 
     props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
   };
@@ -78,17 +66,14 @@ const DispatchBillButton = (props) => {
 const styles = StyleSheet.create({
   styleButtonContainer: {
     borderRadius: 8,
-    paddingHorizontal: Dimensions.get("window").width / 10,
-    paddingVertical: Dimensions.get("window").height / 50,
-    marginHorizontal: Dimensions.get("window").width / 80,
-    marginVertical: Dimensions.get("window").height / 80,
+    padding: 10,
+    margin: 10,
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 20,
   },
-  styleButtonText: {},
   disabledButton: {
     backgroundColor: "#EBEBE4",
   },
@@ -97,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DispatchBillButton;
+export default DispatchFinalPayerButton;

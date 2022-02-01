@@ -49,7 +49,7 @@ export const payersReducer = (state = initialState, action) => {
           )
         );
       }
-      console.log(leftOvers);
+
       newBill.push(
         new Payer(
           action.payers[action.payers.length - 1].payerId,

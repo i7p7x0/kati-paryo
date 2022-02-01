@@ -236,11 +236,11 @@ const EditPayerScreen = (props) => {
           title="Done"
           styleButtonContainer={styles.submitButtonContainer}
           styleButtonText={styles.submitButtonText}
-          disabled={
-            validationInputs.validatePayer(payerTypes.editedPayer)
-              ? false
-              : true
-          }
+          // disabled={
+          //   validationInputs.validatePayer(payerTypes.editedPayer)
+          //     ? false
+          //     : true
+          // }
           navigation={props.navigation}
           payerData={payerTypes}
           resetPayerStates={resetPayerStates}

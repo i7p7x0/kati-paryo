@@ -6,6 +6,10 @@ import { payersReducer } from "./store/reducers/Payers";
 
 import ScreenNavigation from "./navigation/ScreenNavigation";
 
+// TEMP
+
+import PaymentScreen from "./screens/PaymentScreen";
+
 export default function App() {
   const rootReducer = combineReducers({
     bill: billReducer,
@@ -16,6 +20,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <ScreenNavigation />
+      {/* <PaymentScreen/> */}
     </Provider>
   );
 }

@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
+
+// CUSTOM COMPONENTS
+
+import TogglePaidCheck from "../components/molecules/payment/TogglePaidCheck";
+import PaymentScrollView from "../components/molecules/payment/PaymentScrollView";
 
 const PaymentScreen = () => {
+  const billPayers = useSelector((state) => state.payers);
+  const bill = useSelector((state) => state.bill);
+  const [billState, setBillState] = useState({
+    billAmount: bill.billAmount,
+    pending: bill.billAmount,
+  });
+  const [billPayersState, setBillPayersState] = useState(billPayers);
+
   return (
     <View style={styles.screen}>
-      <Text>This is PaymentScreen</Text>
+      <View>
+        <PaymentScrollView billPayers={billPayersState} bill={billState} />
+      </View>
+      <View></View>
     </View>
   );
 };

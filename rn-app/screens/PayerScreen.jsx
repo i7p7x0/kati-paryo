@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Te } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
@@ -8,9 +8,16 @@ import GlobalLabel from "../components/atoms/GlobalLabel";
 import PayerScrollView from "../components/molecules/PayerScrollView";
 import GlobalButton from "../components/atoms/GlobalButton";
 import ColorsCollection from "../constants/ColorsCollection";
+import GlobalModal from "../components/atoms/GlobalModal";
+import DispatchRoundBill from "../components/dispatchers/DispatchRoundBill";
 
 const PayerScreen = (props) => {
   const billPayers = useSelector((state) => state.payers);
+  const [modalState, setModalState] = useState(false);
+
+  const handleProceedBillPaymentPress = () => {
+    setModalState(true);
+  };
 
   return (
     <View style={styles.screen}>
@@ -18,15 +25,22 @@ const PayerScreen = (props) => {
       <PayerScrollView payerData={billPayers} navigation={props.navigation} />
 
       <View style={styles.buttonsContainer}>
+        <GlobalModal visible={modalState}>
+          <DispatchRoundBill
+            billPayers={billPayers}
+            navigation={props.navigation}
+            styleButtonContainer={styles.revertButton}
+            styleButtonText={styles.revertText}
+            closeModal={() => {
+              setModalState(false);
+            }}
+          />
+        </GlobalModal>
         <GlobalButton
-          handleButtonPress={() => {
-            props.navigation.navigate(
-              ScreenNavigationScreenNames.paymentScreen
-            );
-          }}
           title="Proceed"
           styleButtonContainer={styles.submitButton}
           styleButtonText={styles.submitText}
+          handleButtonPress={handleProceedBillPaymentPress}
         />
         <GlobalButton
           handleButtonPress={() => {
@@ -46,12 +60,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: Dimensions.get("window").height / 9,
+    marginVertical: 80,
   },
-  buttonsContainer: {
-    flexDirection: "row",
-    marginVertical: Dimensions.get("window").height / 50,
-  },
+  buttonsContainer: { flexDirection: "row", marginVertical: 10 },
   submitButton: {
     backgroundColor: ColorsCollection.primary,
   },

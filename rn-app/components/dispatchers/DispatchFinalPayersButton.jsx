@@ -13,7 +13,7 @@ import * as payersActions from "../../store/actions/Payers";
 import { useDispatch } from "react-redux";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
-import * as validateInputs from "../../validations/validateInputs";
+
 import { Entypo } from "@expo/vector-icons";
 
 const DispatchFinalPayerButton = (props) => {
@@ -27,7 +27,10 @@ const DispatchFinalPayerButton = (props) => {
     let updatedPayers = props.payerData.otherPayers.filter((filteredPayers) => {
       return filteredPayers.payerId !== props.payerData.adjustmentPayer.payerId;
     });
-    updatedPayers.push(props.payerData.adjustmentPayer);
+    if (props.payerData.adjustmentPayer !== "") {
+      updatedPayers.push(props.payerData.adjustmentPayer);
+    }
+
     updatedPayers.push(props.payerData.editedPayer);
 
     dispatch(
@@ -36,7 +39,6 @@ const DispatchFinalPayerButton = (props) => {
       )
     );
 
-    props.resetPayerStates();
     props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
   };
 

@@ -2,28 +2,28 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
-  Button,
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Modal,
   ScrollView,
+  Dimensions,
   Keyboard,
 } from "react-native";
 import { useSelector } from "react-redux";
-import { FontAwesome } from "@expo/vector-icons";
+
 // CUSTOM COMPONENTS
 
-import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import GlobalTextInput from "../components/atoms/GlobalTextInput";
 import GlobalModal from "../components/atoms/GlobalModal";
 import EditPlayerBillADjustment from "../components/molecules/edit-payer/EditPayerBillAdjustment";
-import GlobalButton from "../components/atoms/GlobalButton";
+import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
 import ColorsCollection from "../constants/ColorsCollection";
+import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPayersButton";
+import GlobalLabel from "../components/atoms/GlobalLabel";
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
+  const bill = useSelector((state) => state.bill);
   const { payerId } = props.route.params;
 
   const [payerTypes, setPayerTypes] = useState({
@@ -37,6 +37,21 @@ const EditPayerScreen = (props) => {
   });
 
   const [modalState, setModalState] = useState(false);
+
+  const resetPayerStates = () => {
+    setPayerTypes(() => {
+      return {
+        editedPayer: billPayersNonAdjusted.find((editedPayer) => {
+          return editedPayer.payerId === payerId;
+        }),
+        otherPayers: billPayersNonAdjusted.filter((filteredPayers) => {
+          return filteredPayers.payerId !== payerId;
+        }),
+        adjustmentPayer: "",
+      };
+    });
+    setModalState(false);
+  };
 
   const handleAdjustBillPress = () => {
     setModalState(true);
@@ -64,7 +79,6 @@ const EditPayerScreen = (props) => {
       payerName: newName,
       payerPayingPercent: payerTypes.editedPayer.payerPayingPercent,
     };
-    console.log(newEditedPayer);
 
     setPayerTypes((prevValue) => {
       return {
@@ -75,6 +89,88 @@ const EditPayerScreen = (props) => {
     });
   };
 
+  const handlePayMoreButtonPress = () => {
+    let combinedSum =
+      Number(payerTypes.editedPayer.payerAmount) +
+      Number(payerTypes.adjustmentPayer.payerAmount);
+
+    let newEditedPayerPayingAmount =
+      Number(payerTypes.editedPayer.payerAmount) + combinedSum / 10;
+
+    let newEditedPayerPayingPercent =
+      (newEditedPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newAdjustmentPayerPayingAmount =
+      Number(payerTypes.adjustmentPayer.payerAmount) - combinedSum / 10;
+
+    let newAdjustmentPayerPayingPercent =
+      (newAdjustmentPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newEditedPayerValues = {
+      payerAmount: newEditedPayerPayingAmount.toFixed(0).toString(),
+      payerId: payerTypes.editedPayer.payerId,
+      payerName: payerTypes.editedPayer.payerName,
+      payerPayingPercent: newEditedPayerPayingPercent.toFixed(2).toString(),
+    };
+    let newAdjustmentPayerValues = {
+      payerAmount: newAdjustmentPayerPayingAmount.toFixed(0).toString(),
+      payerId: payerTypes.adjustmentPayer.payerId,
+      payerName: payerTypes.adjustmentPayer.payerName,
+      payerPayingPercent: newAdjustmentPayerPayingPercent.toFixed(2).toString(),
+    };
+    if (newAdjustmentPayerPayingAmount >= 0) {
+      setPayerTypes((prevValue) => {
+        return {
+          editedPayer: newEditedPayerValues,
+          otherPayers: prevValue.otherPayers,
+          adjustmentPayer: newAdjustmentPayerValues,
+        };
+      });
+    }
+    return;
+  };
+
+  const handlePayLessButtonPress = () => {
+    let combinedSum =
+      Number(payerTypes.editedPayer.payerAmount) +
+      Number(payerTypes.adjustmentPayer.payerAmount);
+
+    let newEditedPayerPayingAmount =
+      Number(payerTypes.editedPayer.payerAmount) - combinedSum / 10;
+
+    let newEditedPayerPayingPercent =
+      (newEditedPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newAdjustmentPayerPayingAmount =
+      Number(payerTypes.adjustmentPayer.payerAmount) + combinedSum / 10;
+
+    let newAdjustmentPayerPayingPercent =
+      (newAdjustmentPayerPayingAmount / Number(bill.billAmount)) * 100;
+
+    let newEditedPayerValues = {
+      payerAmount: newEditedPayerPayingAmount.toFixed(0).toString(),
+      payerId: payerTypes.editedPayer.payerId,
+      payerName: payerTypes.editedPayer.payerName,
+      payerPayingPercent: newEditedPayerPayingPercent.toFixed(2).toString(),
+    };
+    let newAdjustmentPayerValues = {
+      payerAmount: newAdjustmentPayerPayingAmount.toFixed(0).toString(),
+      payerId: payerTypes.adjustmentPayer.payerId,
+      payerName: payerTypes.adjustmentPayer.payerName,
+      payerPayingPercent: newAdjustmentPayerPayingPercent.toFixed(2).toString(),
+    };
+    if (newEditedPayerPayingAmount >= 0) {
+      setPayerTypes((prevValue) => {
+        return {
+          editedPayer: newEditedPayerValues,
+          otherPayers: prevValue.otherPayers,
+          adjustmentPayer: newAdjustmentPayerValues,
+        };
+      });
+    }
+    return;
+  };
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -83,48 +179,41 @@ const EditPayerScreen = (props) => {
     >
       <View style={styles.screen}>
         {/* change payer name */}
-        <View style={styles.editNameContainer}>
-          <GlobalButton
-            title="Edit Name:"
-            styleButtonContainer={styles.adjustButtonContainer}
-            styleButtonText={styles.adjustButtonText}
-          />
-          <GlobalTextInput
-            placeholder="Edit Player Name"
-            value={payerTypes.editedPayer.payerName}
-            handleChangeText={handleChangeText}
-          />
-        </View>
+
+        <GlobalLabel content="Edit Name:" />
+        <GlobalTextInput
+          placeholder="Edit Player Name (2 - 10 characters)"
+          value={payerTypes.editedPayer.payerName}
+          handleChangeText={handleChangeText}
+        />
+
         <GlobalModal visible={modalState}>
-          <ScrollView>
-            {payerTypes.otherPayers.map((payers) => {
-              return (
-                <TouchableOpacity
-                  key={payers.payerId}
-                  onPress={() => {
-                    handleSelectAdjustmentPayer(payers.payerId);
-                  }}
-                >
-                  <View>
-                    <Text>{payers.payerName}</Text>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-          <Button
-            title="Close"
-            onPress={() => {
-              setModalState(false);
-            }}
-          />
+          <View style={styles.selectAdjustmentPayerParentContainer}>
+            <ScrollView>
+              {payerTypes.otherPayers.map((payers) => {
+                return (
+                  <TouchableOpacity
+                    key={payers.payerId}
+                    onPress={() => {
+                      handleSelectAdjustmentPayer(payers.payerId);
+                    }}
+                  >
+                    <View style={styles.selectAdjustmentPayerContainer}>
+                      <Text style={styles.selectAdjustmentPayerText}>
+                        {payers.payerName}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
         </GlobalModal>
         {payerTypes.adjustmentPayer === "" ? (
-          <GlobalButton
+          <GlobalSuccessfulButton
             title="Adjust
               contribution"
-            styleButtonContainer={styles.adjustButtonContainer}
-            styleButtonText={styles.adjustButtonText}
+            handleButtonPress={handleAdjustBillPress}
           />
         ) : null}
 
@@ -132,8 +221,24 @@ const EditPayerScreen = (props) => {
           <EditPlayerBillADjustment
             editedPayer={payerTypes.editedPayer}
             adjustmentPayer={payerTypes.adjustmentPayer}
+            handlePayMoreButtonPress={handlePayMoreButtonPress}
+            handlePayLessButtonPress={handlePayLessButtonPress}
           />
         ) : null}
+
+        <DispatchFinalPayerButton
+          title="Done"
+          styleButtonContainer={styles.submitButtonContainer}
+          styleButtonText={styles.submitButtonText}
+          // disabled={
+          //   validationInputs.validatePayer(payerTypes.editedPayer)
+          //     ? false
+          //     : true
+          // }
+          navigation={props.navigation}
+          payerData={payerTypes}
+          resetPayerStates={resetPayerStates}
+        />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -145,18 +250,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  editedPayer: {
-    margin: 10,
-    padding: 10,
-  },
-  textinput: {
-    padding: 10,
-    borderBottomWidth: 2,
-  },
-  temporaryPadding: {
-    margin: 10,
-    padding: 10,
-  },
+
   adjustButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,
   },
@@ -164,8 +258,27 @@ const styles = StyleSheet.create({
     color: ColorsCollection.light,
   },
   editNameContainer: {
-    flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
+  },
+  submitButtonContainer: { backgroundColor: ColorsCollection.primary },
+  submitButtonText: { color: "black", fontSize: 18 },
+  selectAdjustmentPayerContainer: {
+    backgroundColor: ColorsCollection.tertiary,
+    borderRadius: 8,
+    marginHorizontal: Dimensions.get("window").width / 80,
+    marginVertical: Dimensions.get("window").height / 80,
+    paddingHorizontal: Dimensions.get("window").width / 80,
+    paddingVertical: Dimensions.get("window").height / 80,
+    alignItems: "center",
+  },
+  selectAdjustmentPayerText: {
+    color: ColorsCollection.light,
+  },
+  selectAdjustmentPayerParentContainer: {
+    flex: 1,
+    justifyContent: "center",
+    marginTop: Dimensions.get("window").height / 5,
     alignItems: "center",
   },
 });

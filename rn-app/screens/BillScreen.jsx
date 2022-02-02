@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   Keyboard,
+  Dimensions,
   TouchableWithoutFeedback,
 } from "react-native";
 
@@ -12,18 +13,36 @@ import * as billActions from "../store/actions/Bill";
 import ColorsCollection from "../constants/ColorsCollection";
 import NUMBER_OF_PAYERS from "../data/NUMBER_OF_PAYERS";
 import GlobalTextInput from "../components/atoms/GlobalTextInput";
-import GlobalButton from "../components/atoms/GlobalButton";
-import HorizontalNumberOfPeopleSelector from "../components/molecules/HorizontalNumberOfPeopleSelector";
+
+import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
+import GlobalModal from "../components/atoms/GlobalModal";
+import NumberOfBillPayersSelector from "../components/molecules/bill/NumberOfBillPayersSelector";
 import DispatchBillButton from "../components/dispatchers/DispatchBillButton";
+import * as validationInputs from "../validations/validateInputs";
+import MainIconsFrame from "../components/atoms/MainIconsFrame";
+import GlobalLabel from "../components/atoms/GlobalLabel";
 
 const BillScreen = (props) => {
   const [billState, setBillState] = useState({
     billAmount: "",
     numberOfBillPayers: "",
   });
-
   const [isCustomInputRequired, setIsCustomInputRequired] = useState(false);
   const [customNumberOfPeople, setCustomNumberOfPeople] = useState("");
+  const [modalState, setModalState] = useState(false);
+
+  const handleResetStates = () => {
+    setBillState(() => {
+      return {
+        billAmount: "",
+        numberOfBillPayers: "",
+      };
+    });
+    setIsCustomInputRequired(false);
+    setCustomNumberOfPeople("");
+    setModalState(false);
+    console.log("Hello World");
+  };
 
   const handleChangeText = (text) => {
     let enteredBillAmount = text;
@@ -53,6 +72,7 @@ const BillScreen = (props) => {
     if (billState.numberOfBillPayers.length === 0) {
       setIsCustomInputRequired(false);
     }
+    setModalState(true);
     setCustomNumberOfPeople("");
     setBillState((prevValue) => {
       return {
@@ -75,30 +95,32 @@ const BillScreen = (props) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.screen}>
+        <GlobalLabel content="App Title" />
+        <MainIconsFrame />
         <GlobalTextInput
           placeholder="Enter Bill Amount"
           keyboardType="decimal-pad"
           handleChangeText={handleChangeText}
           vaule={billState.billAmount}
         />
-        <GlobalButton
-          styleButtonContainer={styles.selectBillPayersButtonContainer}
-          styleButtonText={styles.selectBillPayersButtonText}
+        <GlobalSuccessfulButton
           title={
             billState.numberOfBillPayers.length === 0
-              ? "Select number of people"
+              ? "Select total payers"
               : "Number of Bill Payers: " + billState.numberOfBillPayers
           }
           handleButtonPress={handleSelectBillPayersParentPress}
         />
 
         {billState.numberOfBillPayers.length === 0 && !isCustomInputRequired ? (
-          <View style={styles.numberOfPeople}>
-            <HorizontalNumberOfPeopleSelector
-              NUMBER_OF_PAYERS={NUMBER_OF_PAYERS}
-              handleSelectBillPayersPress={handleSelectBillPayersPress}
-            />
-          </View>
+          <GlobalModal visible={modalState}>
+            <View style={styles.modalContent}>
+              <NumberOfBillPayersSelector
+                NUMBER_OF_PAYERS={NUMBER_OF_PAYERS}
+                handleSelectBillPayersPress={handleSelectBillPayersPress}
+              />
+            </View>
+          </GlobalModal>
         ) : null}
         {isCustomInputRequired ? (
           <View style={styles.customInputMembers}>
@@ -107,9 +129,7 @@ const BillScreen = (props) => {
               keyboardType="decimal-pad"
               handleChangeText={setCustomNumberOfPeople}
             />
-            <GlobalButton
-              styleButtonContainer={styles.submitButtonContainer}
-              styleButtonText={styles.submitButtonText}
+            <GlobalSuccessfulButton
               title="+"
               disabled={customNumberOfPeople.length === 0 ? true : false}
               handleButtonPress={handleAddCustomNumberOfPeople}
@@ -117,12 +137,19 @@ const BillScreen = (props) => {
           </View>
         ) : null}
         <DispatchBillButton
-          styleButtonContainer={styles.submitButtonContainer}
-          styleButtonText={styles.submitButtonText}
-          title="Go"
+          title="Proceed"
           dispatchAction={billActions.ADD_BILL}
           bill={billState}
           navigation={props.navigation}
+          disabled={
+            validationInputs.checkValidAmount(billState.billAmount) &&
+            validationInputs.checkValidNumberOfPayers(
+              billState.numberOfBillPayers
+            )
+              ? false
+              : true
+          }
+          handleResetStates={handleResetStates}
         />
       </View>
     </TouchableWithoutFeedback>
@@ -134,7 +161,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    margin: 20,
+    marginHorizontal: Dimensions.get("window").width / 90,
   },
   selectBillPayersButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,
@@ -148,9 +175,7 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: ColorsCollection.light,
   },
-  numberOfPeople: {
-    height: "20%",
-  },
+
   numberOfPeopleR1: {
     flexDirection: "row",
   },
@@ -158,6 +183,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  modalContent: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: (250 / Dimensions.get("window").width) * 100,
   },
 });
 

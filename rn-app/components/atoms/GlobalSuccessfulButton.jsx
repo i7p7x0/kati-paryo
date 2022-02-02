@@ -10,8 +10,9 @@ import {
 } from "react-native";
 
 import PlatformsCollection from "../../constants/PlatformsCollection";
+import ButtonsColors from "../../constants/colors/ButtonsColors";
 
-const GlobalButton = (props) => {
+const GlobalSuccessfulButton = (props) => {
   let TouchableWrapper = TouchableOpacity;
   if (Platform.OS === PlatformsCollection.android) {
     TouchableWrapper = TouchableNativeFeedback;
@@ -21,16 +22,15 @@ const GlobalButton = (props) => {
       onPress={props.handleButtonPress}
       disabled={props.disabled || false}
     >
-      <View style={[styles.styleButtonContainer, props.styleButtonContainer]}>
-        <Text style={(styles.styleButtonText, props.styleButtonText)}>
-          {props.title}
-        </Text>
+      <View style={styles.styleButtonContainer}>
+        <Text style={styles.styleButtonText}>{props.title}</Text>
       </View>
     </TouchableWrapper>
   );
 };
 const styles = StyleSheet.create({
   styleButtonContainer: {
+    backgroundColor: ButtonsColors.successful,
     borderRadius: 8,
     paddingHorizontal: Dimensions.get("window").width / 10,
     paddingVertical: Dimensions.get("window").height / 50,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
   },
-  styleButtonText: { fontWeight: "bold" },
+  styleButtonText: { fontWeight: "bold", fontSize: 18, color: "black" },
 });
 
-export default GlobalButton;
+export default GlobalSuccessfulButton;

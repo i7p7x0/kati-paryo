@@ -3,11 +3,11 @@ import { View, StyleSheet, ScrollView } from "react-native";
 
 // custom Components
 
-import ColorsCollection from "../../constants/ColorsCollection";
-import GlobalButton from "../atoms/GlobalButton";
-import GlobalLabel from "../atoms/GlobalLabel";
+import ColorsCollection from "../../../constants/ColorsCollection";
+import GlobalButton from "../../atoms/GlobalButton";
+import GlobalLabel from "../../atoms/GlobalLabel";
 
-const HorizontalNumberOfPeopleSelector = (props) => {
+const NumberOfBillPayersSelector = (props) => {
   return (
     <View style={styles.screen}>
       <GlobalLabel content="Select number of payers" />
@@ -143,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HorizontalNumberOfPeopleSelector;
+export default NumberOfBillPayersSelector;

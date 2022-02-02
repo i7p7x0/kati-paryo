@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
 import * as validationInputs from "../../validations/validateInputs";
+import ButtonsColors from "../../constants/colors/ButtonsColors";
 import { Entypo } from "@expo/vector-icons";
 
 const DispatchBillButton = (props) => {
@@ -60,16 +61,12 @@ const DispatchBillButton = (props) => {
       disabled={props.disabled || false}
     >
       {props.disabled ? (
-        <View style={[styles.styleButtonContainer, styles.disabledButton]}>
-          <Text style={(styles.styleButtonText, styles.disabledButtonText)}>
-            {props.title} <Entypo name="block" size={24} color="black" />
-          </Text>
+        <View style={styles.disabledButton}>
+          <Text style={styles.disabledButtonText}>{props.title}</Text>
         </View>
       ) : (
-        <View style={[styles.styleButtonContainer, props.styleButtonContainer]}>
-          <Text style={(styles.styleButtonText, props.styleButtonText)}>
-            {props.title}
-          </Text>
+        <View style={styles.styleButtonContainer}>
+          <Text style={styles.styleButtonText}>{props.title}</Text>
         </View>
       )}
     </TouchableWrapper>
@@ -77,6 +74,7 @@ const DispatchBillButton = (props) => {
 };
 const styles = StyleSheet.create({
   styleButtonContainer: {
+    backgroundColor: ButtonsColors.successful,
     borderRadius: 8,
     paddingHorizontal: Dimensions.get("window").width / 10,
     paddingVertical: Dimensions.get("window").height / 50,
@@ -88,13 +86,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
   },
-  styleButtonText: {},
+  styleButtonText: { color: "black", fontWeight: "bold", fontSize: 18 },
   disabledButton: {
-    backgroundColor: "#EBEBE4",
+    backgroundColor: ButtonsColors.disabled,
+    borderRadius: 8,
+    paddingHorizontal: Dimensions.get("window").width / 10,
+    paddingVertical: Dimensions.get("window").height / 50,
+    marginHorizontal: Dimensions.get("window").width / 80,
+    marginVertical: Dimensions.get("window").height / 80,
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 20,
   },
-  disabledButtonText: {
-    color: "black",
-  },
+  disabledButtonText: { color: "black", fontWeight: "bold", fontSize: 18 },
 });
 
 export default DispatchBillButton;

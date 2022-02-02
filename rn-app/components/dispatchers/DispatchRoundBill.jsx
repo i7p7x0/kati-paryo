@@ -3,7 +3,9 @@ import { View, Text, StyleSheet } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import GlobalLabel from "../atoms/GlobalLabel";
-import GlobalButton from "../atoms/GlobalButton";
+
+import GlobalSuccessfulButton from "../atoms/GlobalSuccessfulButton";
+import GlobalFailedButton from "../atoms/GlobalFailedButton";
 import * as payerActions from "../../store/actions/Payers";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 const DispatchRoundBill = (props) => {
@@ -26,18 +28,11 @@ const DispatchRoundBill = (props) => {
         <GlobalLabel content="Round bill payment amounts?" />
       </View>
       <View style={styles.buttonsContainer}>
-        <GlobalButton
+        <GlobalSuccessfulButton
           handleButtonPress={handleYesPress}
           title="Yes"
-          styleButtonContainer={props.styleButtonContainer}
-          styleButtonText={props.styleButtonText}
         />
-        <GlobalButton
-          handleButtonPress={handleNoPress}
-          title="No"
-          styleButtonContainer={props.styleButtonContainer}
-          styleButtonText={props.styleButtonText}
-        />
+        <GlobalFailedButton handleButtonPress={handleNoPress} title="No" />
       </View>
     </View>
   );

@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import GlobalLabel from "../components/atoms/GlobalLabel";
 import PayerScrollView from "../components/molecules/PayerScrollView";
 import GlobalButton from "../components/atoms/GlobalButton";
+import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
+import GlobalFailedButton from "../components/atoms/GlobalFailedButton";
 import ColorsCollection from "../constants/ColorsCollection";
 import GlobalModal from "../components/atoms/GlobalModal";
 import DispatchRoundBill from "../components/dispatchers/DispatchRoundBill";
@@ -36,13 +38,13 @@ const PayerScreen = (props) => {
             }}
           />
         </GlobalModal>
-        <GlobalButton
+        <GlobalSuccessfulButton
           title="Proceed"
           styleButtonContainer={styles.submitButton}
           styleButtonText={styles.submitText}
           handleButtonPress={handleProceedBillPaymentPress}
         />
-        <GlobalButton
+        <GlobalFailedButton
           handleButtonPress={() => {
             props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
           }}

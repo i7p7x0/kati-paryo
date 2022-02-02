@@ -8,6 +8,7 @@ import PaymentScrollView from "../components/molecules/payment/PaymentScrollView
 import DispatchFinalPayment from "../components/dispatchers/DispatchFinalPayment";
 import ColorsCollection from "../constants/ColorsCollection";
 import GlobalButton from "../components/atoms/GlobalButton";
+import GlobalFailedButton from "../components/atoms/GlobalFailedButton";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 
 const PaymentScreen = (props) => {
@@ -25,15 +26,8 @@ const PaymentScreen = (props) => {
         <PaymentScrollView billPayers={billPayersState} bill={billState} />
       </View>
       <View style={styles.buttonsContainer}>
-        <DispatchFinalPayment
-          title="Confirm"
-          styleButtonContainer={styles.submitButton}
-          styleButtonText={styles.submitText}
-          navigation={props.navigation}
-        />
-        <GlobalButton
-          styleButtonContainer={styles.submitButton}
-          styleButtonText={styles.submitText}
+        <DispatchFinalPayment title="Confirm" navigation={props.navigation} />
+        <GlobalFailedButton
           title="Revert"
           handleButtonPress={() => {
             props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
@@ -53,10 +47,7 @@ const styles = StyleSheet.create({
   scrollCcontent: {
     height: "60%",
   },
-  submitButton: {
-    backgroundColor: ColorsCollection.primary,
-  },
-  submitText: { color: ColorsCollection.light },
+
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "center",

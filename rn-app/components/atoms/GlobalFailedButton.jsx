@@ -12,7 +12,7 @@ import {
 import PlatformsCollection from "../../constants/PlatformsCollection";
 import ButtonsColors from "../../constants/colors/ButtonsColors";
 
-const GlobalSuccessfulButton = (props) => {
+const GlobalFailedButton = (props) => {
   let TouchableWrapper = TouchableOpacity;
   if (Platform.OS === PlatformsCollection.android) {
     TouchableWrapper = TouchableNativeFeedback;
@@ -30,7 +30,7 @@ const GlobalSuccessfulButton = (props) => {
 };
 const styles = StyleSheet.create({
   styleButtonContainer: {
-    backgroundColor: ButtonsColors.successful,
+    backgroundColor: ButtonsColors.failed,
     borderRadius: 8,
     paddingHorizontal: Dimensions.get("window").width / 10,
     paddingVertical: Dimensions.get("window").height / 50,
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   styleButtonText: { fontWeight: "bold", fontSize: 18, color: "black" },
 });
 
-export default GlobalSuccessfulButton;
+export default GlobalFailedButton;

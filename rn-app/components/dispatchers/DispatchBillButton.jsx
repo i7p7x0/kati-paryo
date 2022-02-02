@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
   },
-  styleButtonText: { color: "black", fontWeight: "bold" },
+  styleButtonText: { color: "black", fontWeight: "bold", fontSize: 18 },
   disabledButton: {
     backgroundColor: ButtonsColors.disabled,
     borderRadius: 8,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
   },
-  disabledButtonText: { color: "black", fontWeight: "bold" },
+  disabledButtonText: { color: "black", fontWeight: "bold", fontSize: 18 },
 });
 
 export default DispatchBillButton;

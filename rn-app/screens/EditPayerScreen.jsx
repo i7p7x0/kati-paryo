@@ -16,10 +16,10 @@ import { useSelector } from "react-redux";
 import GlobalTextInput from "../components/atoms/GlobalTextInput";
 import GlobalModal from "../components/atoms/GlobalModal";
 import EditPlayerBillADjustment from "../components/molecules/edit-payer/EditPayerBillAdjustment";
-import GlobalButton from "../components/atoms/GlobalButton";
+import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
 import ColorsCollection from "../constants/ColorsCollection";
 import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPayersButton";
-import * as validationInputs from "../validations/validateInputs";
+import GlobalLabel from "../components/atoms/GlobalLabel";
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
@@ -179,18 +179,14 @@ const EditPayerScreen = (props) => {
     >
       <View style={styles.screen}>
         {/* change payer name */}
-        <View style={styles.editNameContainer}>
-          <GlobalButton
-            title="Edit Name:"
-            styleButtonContainer={styles.adjustButtonContainer}
-            styleButtonText={styles.adjustButtonText}
-          />
-          <GlobalTextInput
-            placeholder="Edit Player Name (2 - 10 characters)"
-            value={payerTypes.editedPayer.payerName}
-            handleChangeText={handleChangeText}
-          />
-        </View>
+
+        <GlobalLabel content="Edit Name:" />
+        <GlobalTextInput
+          placeholder="Edit Player Name (2 - 10 characters)"
+          value={payerTypes.editedPayer.payerName}
+          handleChangeText={handleChangeText}
+        />
+
         <GlobalModal visible={modalState}>
           <View style={styles.selectAdjustmentPayerParentContainer}>
             <ScrollView>
@@ -214,11 +210,9 @@ const EditPayerScreen = (props) => {
           </View>
         </GlobalModal>
         {payerTypes.adjustmentPayer === "" ? (
-          <GlobalButton
+          <GlobalSuccessfulButton
             title="Adjust
               contribution"
-            styleButtonContainer={styles.adjustButtonContainer}
-            styleButtonText={styles.adjustButtonText}
             handleButtonPress={handleAdjustBillPress}
           />
         ) : null}
@@ -268,7 +262,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   submitButtonContainer: { backgroundColor: ColorsCollection.primary },
-  submitButtonText: { color: ColorsCollection.light },
+  submitButtonText: { color: "black", fontSize: 18 },
   selectAdjustmentPayerContainer: {
     backgroundColor: ColorsCollection.tertiary,
     borderRadius: 8,

@@ -1,4 +1,9 @@
-import { CREATE_PAYERS, UPDATE_PAYERS, ROUND_BILL } from "../actions/Payers";
+import {
+  CREATE_PAYERS,
+  UPDATE_PAYERS,
+  ROUND_BILL,
+  REMOVE_PAYER,
+} from "../actions/Payers";
 import Payer from "../../model/Payer";
 import * as validationInputs from "../../validations/validateInputs";
 
@@ -59,6 +64,9 @@ export const payersReducer = (state = initialState, action) => {
         )
       );
       state = newBill;
+      return state;
+    case REMOVE_PAYER:
+      state = [];
       return state;
     default:
       return state;

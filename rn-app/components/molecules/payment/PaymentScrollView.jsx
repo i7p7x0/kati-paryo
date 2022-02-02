@@ -3,13 +3,10 @@ import { View, Text, ScrollView, Dimensions, StyleSheet } from "react-native";
 
 // CUSTOM COMPONENTS
 
-import TogglePaidCheck from "./TogglePaidCheck";
 import GlobalLabel from "../../atoms/GlobalLabel";
 import ColorsCollection from "../../../constants/ColorsCollection";
 
 const PaymentScrollView = (props) => {
-  const [markAllAsPaidState, setMarkAllAsPaidState] = useState(false);
-
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
@@ -24,36 +21,36 @@ const PaymentScrollView = (props) => {
               <View>
                 <Text style={styles.text}>{billPayer.payerName}</Text>
               </View>
-              <View>
-                <TogglePaidCheck
-                  markAllAsPaidState={markAllAsPaidState}
-                  toggleMain={false}
-                />
+              <View style={styles.statsContainer}>
+                <View>
+                  <Text style={styles.text}>
+                    paying:{billPayer.payerAmount}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.text}> | </Text>
+                </View>
+                <View>
+                  <Text style={styles.text}>
+                    {billPayer.payerPayingPercent}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.text}>%</Text>
+                </View>
               </View>
             </View>
           );
         })}
-      </View>
-      <View style={styles.markAllAsPaidContainer}>
-        <View style={styles.markAllChild}>
-          <Text style={styles.text}>Mark all as paid</Text>
-        </View>
-        <View>
-          <TogglePaidCheck
-            markAllAsPaidState={markAllAsPaidState}
-            toggleMain={true}
-            handleMarkPress={() => {
-              setMarkAllAsPaidState(!markAllAsPaidState);
-            }}
-          />
-        </View>
       </View>
       <View style={styles.billContainer}>
         <View>
           <GlobalLabel content={"Total :" + props.bill.billAmount} />
         </View>
         <View>
-          <GlobalLabel content={"Pending :" + props.bill.pending} />
+          <GlobalLabel
+            content={"No. of Payers :" + props.bill.numberOfBillPayers}
+          />
         </View>
       </View>
     </ScrollView>
@@ -98,6 +95,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   listContainer: {},
+  statsContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default PaymentScrollView;

@@ -8,3 +8,9 @@ export const addBill = (billAmount, numberOfBillPayers) => {
     numberOfBillPayers: numberOfBillPayers,
   };
 };
+
+export const removeBill = () => {
+  return {
+    type: REMOVE_BILL,
+  };
+};

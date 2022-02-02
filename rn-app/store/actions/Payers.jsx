@@ -1,6 +1,7 @@
 export const CREATE_PAYERS = "CREATE_PAYERS";
 export const UPDATE_PAYERS = "UPDATE_PAYERS";
 export const ROUND_BILL = "ROUND_BILLS";
+export const REMOVE_PAYER = "REMOVE_PAYER";
 
 export const createPayers = (billAmount, numberOfBillPayers) => {
   return {
@@ -24,3 +25,9 @@ export const roundBill = (payers, total) => {
     total: total,
   };
 };
+
+export const removePayer=()=>{
+  return {
+    type:REMOVE_PAYER
+  }
+}

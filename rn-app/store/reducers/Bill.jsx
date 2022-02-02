@@ -1,4 +1,4 @@
-import { ADD_BILL } from "../actions/Bill";
+import { ADD_BILL, REMOVE_BILL } from "../actions/Bill";
 import * as validationInputs from "../../validations/validateInputs";
 
 const initialState = {
@@ -21,6 +21,11 @@ export const billReducer = (state = initialState, action) => {
       state.numberOfBillPayers = action.numberOfBillPayers;
 
       return state;
+    case REMOVE_BILL:
+      state = {
+        billAmount: "",
+        numberOfBillPayers: "",
+      };
     default:
       return state;
   }

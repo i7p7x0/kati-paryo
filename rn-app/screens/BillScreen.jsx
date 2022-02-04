@@ -21,6 +21,7 @@ import DispatchBillButton from "../components/dispatchers/DispatchBillButton";
 import * as validationInputs from "../validations/validateInputs";
 import MainIconsFrame from "../components/atoms/MainIconsFrame";
 import GlobalLabel from "../components/atoms/GlobalLabel";
+import BackgroundColors from "../constants/colors/BackgroundColors";
 
 const BillScreen = (props) => {
   const [billState, setBillState] = useState({
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: Dimensions.get("window").width / 90,
+    backgroundColor: BackgroundColors.lightPink,
   },
   selectBillPayersButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,
@@ -188,7 +189,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: (250 / Dimensions.get("window").width) * 100,
+    paddingVertical: (250 / Dimensions.get("window").width) * 100,
+    backgroundColor: BackgroundColors.lightPink,
   },
 });
 

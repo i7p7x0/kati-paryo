@@ -20,6 +20,7 @@ import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
 import ColorsCollection from "../constants/ColorsCollection";
 import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPayersButton";
 import GlobalLabel from "../components/atoms/GlobalLabel";
+import BackgroundColors from "../constants/colors/BackgroundColors";
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
@@ -246,6 +247,7 @@ const EditPayerScreen = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor: BackgroundColors.lightPink,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -276,9 +278,10 @@ const styles = StyleSheet.create({
     color: ColorsCollection.light,
   },
   selectAdjustmentPayerParentContainer: {
+    backgroundColor: BackgroundColors.lightPink,
     flex: 1,
     justifyContent: "center",
-    marginTop: Dimensions.get("window").height / 5,
+    paddingTop: Dimensions.get("window").height / 5,
     alignItems: "center",
   },
 });

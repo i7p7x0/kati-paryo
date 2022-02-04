@@ -29,7 +29,6 @@ const PayerScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      {console.log(bill.numberOfBillPayers)}
       {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
           <GlobalLabel content="Tap on payers to make changes" />

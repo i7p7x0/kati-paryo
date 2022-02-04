@@ -11,9 +11,9 @@ import {
 import { Octicons } from "@expo/vector-icons";
 
 // CUSTOM COMPONENTS
-import PayerAvatarColors from "../../constants/PayerAvatarColors";
-import PlatformsCollection from "../../constants/PlatformsCollection";
-import ScreenNavigationSCreenNames from "../../constants/ScreenNavigationScreenNames";
+import PayerAvatarColors from "../../../constants/PayerAvatarColors"
+import PlatformsCollection from "../../../constants/PlatformsCollection";
+import ScreenNavigationSCreenNames from "../../../constants/ScreenNavigationScreenNames";
 
 const BillPayer = (props) => {
   let randomGeneratedColor = PayerAvatarColors.find(

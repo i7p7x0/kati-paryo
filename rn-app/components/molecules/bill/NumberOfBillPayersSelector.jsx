@@ -6,6 +6,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import ColorsCollection from "../../../constants/ColorsCollection";
 import GlobalButton from "../../atoms/GlobalButton";
 import GlobalLabel from "../../atoms/GlobalLabel";
+import BackgroundColors from "../../../constants/colors/BackgroundColors";
 
 const NumberOfBillPayersSelector = (props) => {
   return (
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: BackgroundColors.lightPink,
   },
   selectBillPayersButtonContainer: {
     backgroundColor: ColorsCollection.tertiary,

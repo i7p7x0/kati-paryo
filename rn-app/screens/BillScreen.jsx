@@ -42,7 +42,6 @@ const BillScreen = (props) => {
     setIsCustomInputRequired(false);
     setCustomNumberOfPeople("");
     setModalState(false);
-    console.log("Hello World");
   };
 
   const handleChangeText = (text) => {

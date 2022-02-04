@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 
 import PaymentScrollView from "../components/molecules/payment/PaymentScrollView";
 import DispatchFinalPayment from "../components/dispatchers/DispatchFinalPayment";
-import ColorsCollection from "../constants/ColorsCollection";
-import GlobalButton from "../components/atoms/GlobalButton";
+import BackgroundColors from "../constants/colors/BackgroundColors";
 import GlobalFailedButton from "../components/atoms/GlobalFailedButton";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 
@@ -40,6 +39,7 @@ const PaymentScreen = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor: BackgroundColors.lightPink,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

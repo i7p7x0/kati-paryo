@@ -8,6 +8,8 @@ import GlobalSuccessfulButton from "../atoms/GlobalSuccessfulButton";
 import GlobalFailedButton from "../atoms/GlobalFailedButton";
 import * as payerActions from "../../store/actions/Payers";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
+import BackgroundColors from "../../constants/colors/BackgroundColors";
+
 const DispatchRoundBill = (props) => {
   const dispatch = useDispatch();
   const bill = useSelector((state) => state.bill);
@@ -40,6 +42,7 @@ const DispatchRoundBill = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor:BackgroundColors.lightPink,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

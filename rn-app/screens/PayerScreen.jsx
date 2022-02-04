@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Te } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
@@ -7,12 +7,12 @@ import { useSelector } from "react-redux";
 import GlobalLabel from "../components/atoms/GlobalLabel";
 import PayerScrollView from "../components/molecules/payer/PayerScrollView";
 import LargePayerComponent from "../components/molecules/payer/LargePayerComponent";
-
 import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
 import GlobalFailedButton from "../components/atoms/GlobalFailedButton";
 import ColorsCollection from "../constants/ColorsCollection";
 import GlobalModal from "../components/atoms/GlobalModal";
 import DispatchRoundBill from "../components/dispatchers/DispatchRoundBill";
+import BackgroundColors from "../constants/colors/BackgroundColors";
 
 const PayerScreen = (props) => {
   const billPayers = useSelector((state) => state.payers);
@@ -29,7 +29,8 @@ const PayerScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      {billPayers.numberOfBillPayers <= 10 ? (
+      {console.log(bill.numberOfBillPayers)}
+      {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
           <GlobalLabel content="Tap on payers to make changes" />
           <PayerScrollView
@@ -74,10 +75,11 @@ const PayerScreen = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor: BackgroundColors.lightPink,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 80,
+    paddingVertical: "30%",
   },
   buttonsContainer: { flexDirection: "row", marginVertical: 10 },
   submitButton: {

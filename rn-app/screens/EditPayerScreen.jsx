@@ -21,6 +21,7 @@ import ColorsCollection from "../constants/ColorsCollection";
 import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPayersButton";
 import GlobalLabel from "../components/atoms/GlobalLabel";
 import BackgroundColors from "../constants/colors/BackgroundColors";
+import LabelColors from "../constants/colors/LabelColors";
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
@@ -215,6 +216,7 @@ const EditPayerScreen = (props) => {
             title="Adjust
               contribution"
             handleButtonPress={handleAdjustBillPress}
+            disabled={bill.numberOfBillPayers > 1 ? false : true}
           />
         ) : null}
 
@@ -266,16 +268,17 @@ const styles = StyleSheet.create({
   submitButtonContainer: { backgroundColor: ColorsCollection.primary },
   submitButtonText: { color: "black", fontSize: 18 },
   selectAdjustmentPayerContainer: {
-    backgroundColor: ColorsCollection.tertiary,
+    backgroundColor: LabelColors.labelYellow,
     borderRadius: 8,
-    marginHorizontal: Dimensions.get("window").width / 80,
     marginVertical: Dimensions.get("window").height / 80,
-    paddingHorizontal: Dimensions.get("window").width / 80,
+    paddingHorizontal: Dimensions.get("window").width / 6,
     paddingVertical: Dimensions.get("window").height / 80,
     alignItems: "center",
   },
   selectAdjustmentPayerText: {
-    color: ColorsCollection.light,
+    color: LabelColors.labelBlack,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   selectAdjustmentPayerParentContainer: {
     backgroundColor: BackgroundColors.lightPink,

@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: "30%",
+    paddingVertical: "10%",
   },
   buttonsContainer: { flexDirection: "row", marginVertical: 10 },
   submitButton: {

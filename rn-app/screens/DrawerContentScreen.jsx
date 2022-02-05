@@ -3,17 +3,18 @@ import { View, Text, StyleSheet } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import BackgroundColors from "../constants/colors/BackgroundColors";
+import { Entypo } from "@expo/vector-icons";
 
 const DrawerContentScreen = (props) => {
   return (
     <View style={styles.screen}>
       <DrawerContentScrollView>
         <DrawerItem
-          label="Home"
+          label="Application"
           icon={() => {
             return (
-              <View>
-                <Text>Home</Text>
+              <View style={styles.drawerItemContainer}>
+                <Entypo name="home" size={24} />
               </View>
             );
           }}
@@ -27,8 +28,8 @@ const DrawerContentScreen = (props) => {
           label="About"
           icon={() => {
             return (
-              <View>
-                <Text>About</Text>
+              <View style={styles.drawerItemContainer}>
+                <Entypo name="info-with-circle" size={24} color="black" />
               </View>
             );
           }}
@@ -45,8 +46,13 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+
     backgroundColor: BackgroundColors.blue,
+  },
+  drawerItemContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 export default DrawerContentScreen;

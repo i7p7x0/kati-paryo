@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: Dimensions.get("window").height / 80,
     marginHorizontal: Dimensions.get("window").width / 80,
-    paddingVertical: Dimensions.get("window").height / 100,
-    paddingHorizontal: Dimensions.get("window").width / 40,
+    paddingVertical: Dimensions.get("window").height / 60,
+    paddingHorizontal: Dimensions.get("window").width / 10,
     borderRadius: 8,
     backgroundColor: LabelColors.labelYellow,
   },
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
   text: {
     color: LabelColors.labelBlack,
     fontWeight: "bold",
+    fontSize: 18,
   },
   markAllChild: {
     paddingHorizontal: Dimensions.get("window").width / 40,

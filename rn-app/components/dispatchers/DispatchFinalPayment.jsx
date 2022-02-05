@@ -14,7 +14,7 @@ const DispatchFinalPayment = (props) => {
   const handleDispatchAction = () => {
     // dispatch(billActions.removeBill());
     dispatch(payersActions.removePayer());
-    Alert.alert("Done");
+    Alert.alert("Done!", "Completed Payment");
     props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
   };
 

@@ -4,7 +4,7 @@ import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenName
 import { useSelector } from "react-redux";
 
 // CUSTOM COMPONENTS
-import GlobalLabel from "../components/atoms/GlobalLabel";
+import GlobalNote from "../components/atoms/GlobalNote";
 import PayerScrollView from "../components/molecules/payer/PayerScrollView";
 import LargePayerComponent from "../components/molecules/payer/LargePayerComponent";
 import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
@@ -34,7 +34,9 @@ const PayerScreen = (props) => {
     <View style={styles.screen}>
       {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
-          <GlobalLabel content="Tap on payers to make changes" />
+          <View style={styles.noteContainer}>
+            <GlobalNote content="Tap on payers to edit their name or adjust bill with another payer." />
+          </View>
           <PayerScrollView
             payerData={billPayers}
             navigation={props.navigation}
@@ -90,6 +92,11 @@ const styles = StyleSheet.create({
   revertButton: { backgroundColor: ColorsCollection.tertiary },
   submitText: { color: ColorsCollection.light },
   revertText: { color: ColorsCollection.light },
+  noteContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "95%",
+  },
 });
 
 export default PayerScreen;

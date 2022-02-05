@@ -4,7 +4,7 @@ import { View, Text, ScrollView, Dimensions, StyleSheet } from "react-native";
 // CUSTOM COMPONENTS
 
 import GlobalLabel from "../../atoms/GlobalLabel";
-import ColorsCollection from "../../../constants/ColorsCollection";
+import LabelColors from "../../../constants/colors/LabelColors";
 
 const PaymentScrollView = (props) => {
   return (
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     paddingVertical: Dimensions.get("window").height / 100,
     paddingHorizontal: Dimensions.get("window").width / 40,
     borderRadius: 8,
-    backgroundColor: ColorsCollection.tertiary,
+    backgroundColor: LabelColors.labelYellow,
   },
   billContainer: {
     flexDirection: "row",
@@ -77,14 +77,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 8,
-    backgroundColor: ColorsCollection.tertiary,
+
     marginVertical: Dimensions.get("window").height / 80,
     marginHorizontal: Dimensions.get("window").width / 80,
     paddingVertical: Dimensions.get("window").height / 100,
     paddingHorizontal: Dimensions.get("window").width / 40,
   },
   text: {
-    color: ColorsCollection.light,
+    color: LabelColors.labelBlack,
     fontWeight: "bold",
   },
   markAllChild: {

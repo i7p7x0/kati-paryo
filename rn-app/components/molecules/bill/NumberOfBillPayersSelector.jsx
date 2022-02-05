@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 
 // custom Components
 
-import ColorsCollection from "../../../constants/ColorsCollection";
+import LabelColors from "../../../constants/colors/LabelColors";
 import GlobalButton from "../../atoms/GlobalButton";
 import GlobalLabel from "../../atoms/GlobalLabel";
 import BackgroundColors from "../../../constants/colors/BackgroundColors";
@@ -138,10 +138,12 @@ const styles = StyleSheet.create({
     backgroundColor: BackgroundColors.lightPink,
   },
   selectBillPayersButtonContainer: {
-    backgroundColor: ColorsCollection.tertiary,
+    backgroundColor: LabelColors.labelYellow,
   },
   selectBillPayersButtonText: {
-    color: ColorsCollection.light,
+    fontWeight: "bold",
+    fontSize: 18,
+    color: LabelColors.labelBlack,
   },
 });
 

@@ -3,6 +3,7 @@ import { View, Text, Dimensions, StyleSheet } from "react-native";
 
 import ColorsCollection from "../../constants/ColorsCollection";
 import BackgroundColors from "../../constants/colors/BackgroundColors";
+import LabelColors from "../../constants/colors/LabelColors";
 
 const GlobalLabel = (props) => {
   return (
@@ -14,7 +15,7 @@ const GlobalLabel = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: BackgroundColors.dark,
+    backgroundColor: LabelColors.labelBlack,
     paddingHorizontal: Dimensions.get("window").width / 12,
     paddingVertical: Dimensions.get("window").height / 80,
     marginHorizontal: Dimensions.get("window").width / 80,
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
   },
-  text: { color: ColorsCollection.light, fontWeight: "bold" },
+  text: { color: ColorsCollection.light, fontWeight: "bold", fontSize: 18 },
 });
 
 export default GlobalLabel;

@@ -20,8 +20,8 @@ export const checkValidNumberOfPayers = (inputText) => {
 
 export const validatePayer = (payer) => {
   if (
-    payer.payerName.length > 2 &&
-    payer.payerName.length <= 10 &&
+    // payer.payerName.length > 2 &&
+    // payer.payerName.length <= 10 &&
     parseFloat(payer.payerAmount.match(/^-?\d*(\.\d+)?$/)) > 0 &&
     parseFloat(payer.payerPayingPercent.match(/^-?\d*(\.\d+)?$/)) > 0
     //  && parseFloat(payer.payerId.match(/^-?\d*(\.\d+)?$/)) > 0

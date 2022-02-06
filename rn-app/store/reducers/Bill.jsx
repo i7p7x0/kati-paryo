@@ -26,7 +26,6 @@ export const billReducer = (state = initialState, action) => {
         billAmount: "",
         numberOfBillPayers: "",
       };
-      console.log(state);
       return state;
     default:
       return state;

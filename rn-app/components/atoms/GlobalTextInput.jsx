@@ -5,7 +5,7 @@ const GlobalTextInput = (props) => {
   const handleChangeText = (text) => {
     props.handleChangeText(text);
   };
-  console.log(props.value);
+
   return (
     <View style={styles.inputAmount}>
       <TextInput

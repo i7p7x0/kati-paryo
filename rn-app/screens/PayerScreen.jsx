@@ -20,11 +20,12 @@ const PayerScreen = (props) => {
   const [modalState, setModalState] = useState(false);
 
   const handleProceedBillPaymentPress = () => {
-    if (
-      bill.numberOfBillPayers <= 10 &&
-      (bill.billAmount / bill.numberOfBillPayers) % 5 !== 0
-    ) {
-      setModalState(true);
+    if (bill.numberOfBillPayers <= 10) {
+      if ((bill.billAmount / bill.numberOfBillPayers) % 5 !== 0) {
+        setModalState(true);
+      } else {
+        props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+      }
     } else {
       Alert.alert("Done", "Payment Completed");
       props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
@@ -36,7 +37,7 @@ const PayerScreen = (props) => {
       {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
           <View style={styles.noteContainer}>
-            <GlobalNote content="Tap on payers to edit their name or adjust bill with another payer." />
+            <GlobalNote content="Payer names are randomly generated. Tap on payers to edit their name or adjust bill with another payer." />
           </View>
           <PayerScrollView
             payerData={billPayers}

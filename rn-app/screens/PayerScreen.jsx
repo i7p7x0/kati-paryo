@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, Alert } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
@@ -26,7 +26,8 @@ const PayerScreen = (props) => {
     ) {
       setModalState(true);
     } else {
-      props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+      Alert.alert("Done", "Payment Completed");
+      props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
     }
   };
 

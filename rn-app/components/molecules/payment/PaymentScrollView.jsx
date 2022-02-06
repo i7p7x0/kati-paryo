@@ -11,9 +11,7 @@ const PaymentScrollView = (props) => {
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
     >
-      <View style={styles.checkPayers}>
-        <GlobalLabel content="Check payers" />
-      </View>
+      
       <View style={styles.listContainer}>
         {props.billPayers.map((billPayer) => {
           return (
@@ -91,10 +89,7 @@ const styles = StyleSheet.create({
   markAllChild: {
     paddingHorizontal: Dimensions.get("window").width / 40,
   },
-  checkPayers: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  
   listContainer: {},
   statsContainer: {
     flexDirection: "row",

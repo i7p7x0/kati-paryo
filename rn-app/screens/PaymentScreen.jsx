@@ -9,6 +9,7 @@ import DispatchFinalPayment from "../components/dispatchers/DispatchFinalPayment
 import BackgroundColors from "../constants/colors/BackgroundColors";
 import GlobalFailedButton from "../components/atoms/GlobalFailedButton";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
+import GlobalLabel from "../components/atoms/GlobalLabel";
 
 const PaymentScreen = (props) => {
   const billPayers = useSelector((state) => state.payers);
@@ -22,6 +23,9 @@ const PaymentScreen = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.scrollCcontent}>
+        <View style={styles.checkPayers}>
+          <GlobalLabel content="Your final bill" />
+        </View>
         <PaymentScrollView billPayers={billPayersState} bill={billState} />
       </View>
       <View style={styles.buttonsContainer}>
@@ -51,6 +55,10 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+  checkPayers: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

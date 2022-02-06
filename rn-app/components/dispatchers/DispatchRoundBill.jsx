@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import GlobalLabel from "../atoms/GlobalLabel";
@@ -17,17 +17,25 @@ const DispatchRoundBill = (props) => {
   const handleYesPress = () => {
     dispatch(payerActions.roundBill(props.billPayers, bill.billAmount));
     props.closeModal();
-    props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    if (bill.numberOfBillPayers <= 10) {
+      props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    } else if (bill.numberOfBillPayers > 10) {
+      Alert.alert("Done", "Payment Completed");
+    }
   };
   const handleNoPress = () => {
     props.closeModal();
-    props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    if (bill.numberOfBillPayers <= 10) {
+      props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    } else if (bill.numberOfBillPayers > 10) {
+      Alert.alert("Done", "Payment Completed");
+    }
   };
 
   return (
     <View style={styles.screen}>
       <View style={styles.textContainer}>
-        <GlobalLabel content="Would you like to split the bill in multiples of 5?" />
+        <GlobalLabel content="Split bill in multiples of 5?" />
         <GlobalWarning content="This will adjust the bill so that everyone pays an amount that is a multiple of 5. However, one person will end up paying slightly more because the accumulated leftovers are added to their total." />
       </View>
       <View style={styles.buttonsContainer}>

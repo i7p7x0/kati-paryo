@@ -31,19 +31,7 @@ const BillPayer = (props) => {
         });
       }}
     >
-      <View
-        style={{
-          backgroundColor: LabelColors.labelWhite,
-          paddingHorizontal: Dimensions.get("window").width / 10,
-          paddingVertical: Dimensions.get("window").height / 50,
-          marginHorizontal: Dimensions.get("window").width / 80,
-          marginVertical: Dimensions.get("window").height / 80,
-          justifyContent: "center",
-
-          width: Platform.OS === PlatformsCollection.android ? "90%" : "90%",
-          borderRadius: 8,
-        }}
-      >
+      <View style={styles.screen}>
         <View style={styles.payerIdentityContainer}>
           <View style={styles.child}>
             <Octicons name="octoface" size={24} />
@@ -81,6 +69,19 @@ const BillPayer = (props) => {
 };
 
 const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: LabelColors.labelWhite,
+    paddingHorizontal: Dimensions.get("window").width / 10,
+    paddingVertical: Dimensions.get("window").height / 50,
+    marginHorizontal: Dimensions.get("window").width / 80,
+    marginVertical: Dimensions.get("window").height / 80,
+    justifyContent: "center",
+    width: Platform.OS === PlatformsCollection.android ? "90%" : "90%",
+    borderRadius: 8,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderColor: "#D1D1D1",
+  },
   avatarContainer: {
     paddingHorizontal: Dimensions.get("window").width / 10,
     paddingVertical: Dimensions.get("window").height / 50,

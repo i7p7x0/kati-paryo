@@ -11,9 +11,6 @@ const PaymentScrollView = (props) => {
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
     >
-      <View style={styles.checkPayers}>
-        <GlobalLabel content="Check payers" />
-      </View>
       <View style={styles.listContainer}>
         {props.billPayers.map((billPayer) => {
           return (
@@ -59,15 +56,16 @@ const PaymentScrollView = (props) => {
 
 const styles = StyleSheet.create({
   billPayerContainer: {
-    flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
     marginVertical: Dimensions.get("window").height / 80,
     marginHorizontal: Dimensions.get("window").width / 80,
     paddingVertical: Dimensions.get("window").height / 60,
     paddingHorizontal: Dimensions.get("window").width / 10,
     borderRadius: 8,
-    backgroundColor: LabelColors.labelYellow,
+    backgroundColor: LabelColors.labelWhite,
+    borderTopWidth: 2,
+    borderRightWidth: 2,
+    borderColor: "#D1D1D1",
   },
   billContainer: {
     flexDirection: "row",
@@ -77,7 +75,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     borderRadius: 8,
-
     marginVertical: Dimensions.get("window").height / 80,
     marginHorizontal: Dimensions.get("window").width / 80,
     paddingVertical: Dimensions.get("window").height / 100,
@@ -91,15 +88,10 @@ const styles = StyleSheet.create({
   markAllChild: {
     paddingHorizontal: Dimensions.get("window").width / 40,
   },
-  checkPayers: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
+
   listContainer: {},
   statsContainer: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 

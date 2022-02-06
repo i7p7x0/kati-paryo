@@ -1,7 +1,10 @@
 export default {
-  homeScreen: "Home",
-  payerScreen: "Payer",
-  editPayerScreen: "EditPayer",
-  paymentScreen: "Payment",
-  resultScreen: "Result",
+  homeScreen: "HomeScreen",
+  payerScreen: "PayerScreen",
+  editPayerScreen: "EditPayerScreen",
+  paymentScreen: "PaymentScreen",
+  resultScreen: "ResultScreen",
+  aboutScreen: "AboutScreen",
+  aboutDrawer:"About",
+  applicationDrawer:"Application"
 };

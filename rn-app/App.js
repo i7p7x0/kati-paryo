@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { billReducer } from "./store/reducers/Bill";
 import { payersReducer } from "./store/reducers/Payers";
 
-import ScreenNavigation from "./navigation/ScreenNavigation";
-
+import MainNavigation from "./navigation/MainNavigation";
+import "react-native-gesture-handler";
 // TEMP
 
 import PaymentScreen from "./screens/PaymentScreen";
@@ -19,8 +19,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <ScreenNavigation />
-      {/* <PaymentScreen/> */}
+      <MainNavigation />
     </Provider>
   );
 }

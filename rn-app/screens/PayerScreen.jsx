@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, Alert } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
@@ -20,13 +20,15 @@ const PayerScreen = (props) => {
   const [modalState, setModalState] = useState(false);
 
   const handleProceedBillPaymentPress = () => {
-    if (
-      bill.numberOfBillPayers <= 10 &&
-      (bill.billAmount / bill.numberOfBillPayers) % 5 !== 0
-    ) {
-      setModalState(true);
+    if (bill.numberOfBillPayers <= 10) {
+      if ((bill.billAmount / bill.numberOfBillPayers) % 5 !== 0) {
+        setModalState(true);
+      } else {
+        props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+      }
     } else {
-      props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+      Alert.alert("Done", "Payment Completed");
+      props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
     }
   };
 
@@ -35,7 +37,7 @@ const PayerScreen = (props) => {
       {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
           <View style={styles.noteContainer}>
-            <GlobalNote content="Tap on payers to edit their name or adjust bill with another payer." />
+            <GlobalNote content="Payer names are randomly generated. Tap on payers to edit their name or adjust bill with another payer." />
           </View>
           <PayerScrollView
             payerData={billPayers}
@@ -68,7 +70,7 @@ const PayerScreen = (props) => {
           handleButtonPress={() => {
             props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
           }}
-          title="Revert bill"
+          title="Go back"
           styleButtonContainer={styles.revertButton}
           styleButtonText={styles.revertText}
         />
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: "30%",
+    paddingVertical: "10%",
   },
   buttonsContainer: { flexDirection: "row", marginVertical: 10 },
   submitButton: {

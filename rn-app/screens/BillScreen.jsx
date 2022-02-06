@@ -99,7 +99,7 @@ const BillScreen = (props) => {
           placeholder="Enter Bill Amount"
           keyboardType="decimal-pad"
           handleChangeText={handleChangeText}
-          vaule={billState.billAmount}
+          value={billState.billAmount}
         />
         <GlobalSuccessfulButton
           title={

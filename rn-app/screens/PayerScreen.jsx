@@ -69,7 +69,7 @@ const PayerScreen = (props) => {
           handleButtonPress={() => {
             props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
           }}
-          title="Revert bill"
+          title="Go back"
           styleButtonContainer={styles.revertButton}
           styleButtonText={styles.revertText}
         />

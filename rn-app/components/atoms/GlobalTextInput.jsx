@@ -1,11 +1,11 @@
 import React from "react";
-import { TextInput, View,Dimensions, StyleSheet } from "react-native";
+import { TextInput, View, Dimensions, StyleSheet } from "react-native";
 
 const GlobalTextInput = (props) => {
   const handleChangeText = (text) => {
     props.handleChangeText(text);
   };
-
+  console.log(props.value);
   return (
     <View style={styles.inputAmount}>
       <TextInput
@@ -14,9 +14,6 @@ const GlobalTextInput = (props) => {
         placeholder={props.placeholder}
         keyboardType={props.keyboardType}
         onChangeText={handleChangeText}
-        onPressIn={() => {
-          console.log("Hello");
-        }}
         value={props.value}
       />
     </View>

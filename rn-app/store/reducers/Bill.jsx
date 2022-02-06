@@ -22,8 +22,12 @@ export const billReducer = (state = initialState, action) => {
 
       return state;
     case REMOVE_BILL:
-      console.log("initialState");
-   
+      state = {
+        billAmount: "",
+        numberOfBillPayers: "",
+      };
+      console.log(state);
+      return state;
     default:
       return state;
   }

@@ -11,7 +11,6 @@ const PaymentScrollView = (props) => {
     <ScrollView
       contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
     >
-      
       <View style={styles.listContainer}>
         {props.billPayers.map((billPayer) => {
           return (
@@ -66,6 +65,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Dimensions.get("window").width / 10,
     borderRadius: 8,
     backgroundColor: LabelColors.labelYellow,
+    borderTopWidth: 2,
+    borderRightWidth: 2,
+    borderColor: "#D1D1D1",
   },
   billContainer: {
     flexDirection: "row",
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
   markAllChild: {
     paddingHorizontal: Dimensions.get("window").width / 40,
   },
-  
+
   listContainer: {},
   statsContainer: {
     flexDirection: "row",

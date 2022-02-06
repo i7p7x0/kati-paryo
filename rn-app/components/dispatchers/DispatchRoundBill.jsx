@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import GlobalLabel from "../atoms/GlobalLabel";
-
+import GlobalWarning from "../atoms/GlobalWarning";
 import GlobalSuccessfulButton from "../atoms/GlobalSuccessfulButton";
 import GlobalFailedButton from "../atoms/GlobalFailedButton";
 import * as payerActions from "../../store/actions/Payers";
@@ -17,17 +17,26 @@ const DispatchRoundBill = (props) => {
   const handleYesPress = () => {
     dispatch(payerActions.roundBill(props.billPayers, bill.billAmount));
     props.closeModal();
-    props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    if (bill.numberOfBillPayers <= 10) {
+      props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    } else if (bill.numberOfBillPayers > 10) {
+      Alert.alert("Done", "Payment Completed");
+    }
   };
   const handleNoPress = () => {
     props.closeModal();
-    props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    if (bill.numberOfBillPayers <= 10) {
+      props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+    } else if (bill.numberOfBillPayers > 10) {
+      Alert.alert("Done", "Payment Completed");
+    }
   };
 
   return (
     <View style={styles.screen}>
-      <View>
-        <GlobalLabel content="Round bill payment amounts?" />
+      <View style={styles.textContainer}>
+        <GlobalLabel content="Split bill in multiples of 5?" />
+        <GlobalWarning content="This will adjust the bill so that everyone pays an amount that is a multiple of 5. However, one person will end up paying slightly more because the accumulated leftovers are added to their total." />
       </View>
       <View style={styles.buttonsContainer}>
         <GlobalSuccessfulButton
@@ -42,13 +51,16 @@ const DispatchRoundBill = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor:BackgroundColors.lightPink,
+    backgroundColor: BackgroundColors.lightPink,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   buttonsContainer: {
     flexDirection: "row",
+  },
+  textContainer: {
+    width: "80%",
   },
 });
 

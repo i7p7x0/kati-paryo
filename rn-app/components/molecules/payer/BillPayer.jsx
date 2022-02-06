@@ -11,15 +11,11 @@ import {
 import { Octicons } from "@expo/vector-icons";
 
 // CUSTOM COMPONENTS
-import PayerAvatarColors from "../../../constants/PayerAvatarColors"
+import LabelColors from "../../../constants/colors/LabelColors";
 import PlatformsCollection from "../../../constants/PlatformsCollection";
 import ScreenNavigationSCreenNames from "../../../constants/ScreenNavigationScreenNames";
 
 const BillPayer = (props) => {
-  let randomGeneratedColor = PayerAvatarColors.find(
-    (randomColor) => randomColor.id === props.randomNumber
-  );
-
   let TouchableWrapper = TouchableOpacity;
 
   if (Platform.OS === PlatformsCollection.android) {
@@ -35,50 +31,14 @@ const BillPayer = (props) => {
         });
       }}
     >
-      <View
-        style={{
-          backgroundColor: randomGeneratedColor.colorCode,
-          paddingHorizontal: Dimensions.get("window").width / 10,
-          paddingVertical: Dimensions.get("window").height / 50,
-          marginHorizontal: Dimensions.get("window").width / 80,
-          marginVertical: Dimensions.get("window").height / 80,
-          justifyContent: "center",
-
-          width: Platform.OS === PlatformsCollection.android ? "90%" : "90%",
-          borderRadius: 8,
-        }}
-      >
+      <View style={styles.screen}>
         <View style={styles.payerIdentityContainer}>
           <View style={styles.child}>
-            <Octicons
-              name="octoface"
-              size={24}
-              color={randomGeneratedColor.id > 5 ? "#FFFFFF" : "#000000"}
-            />
+            <Octicons name="octoface" size={24} />
           </View>
           <View style={(styles.child, styles.nameChild)}>
-            <Text
-              style={{
-                color: randomGeneratedColor.id > 5 ? "#FFFFFF" : "#000000",
-                fontSize: 16,
-
-                fontWeight: "bold",
-              }}
-            >
-              Payer:
-            </Text>
-            <Text
-              style={{
-                color: randomGeneratedColor.id > 5 ? "#FFFFFF" : "#000000",
-                fontSize: 16,
-                textDecorationLine: "underline",
-                paddingHorizontal: 10,
-
-                fontWeight: "bold",
-              }}
-            >
-              {props.payerName}
-            </Text>
+            <Text style={styles.regular}>Payer:</Text>
+            <Text style={styles.payerName}>{props.payerName}</Text>
           </View>
         </View>
 
@@ -86,7 +46,6 @@ const BillPayer = (props) => {
           <View style={styles.child}>
             <Text
               style={{
-                color: randomGeneratedColor.id > 5 ? "#FFFFFF" : "#000000",
                 fontSize: 16,
                 fontWeight: "bold",
               }}
@@ -95,24 +54,10 @@ const BillPayer = (props) => {
             </Text>
           </View>
           <View style={styles.child}>
-            <Text
-              style={{
-                color: randomGeneratedColor.id > 5 ? "#FFFFFF" : "#000000",
-                fontSize: 16,
-                fontWeight: "bold",
-              }}
-            >
-              |
-            </Text>
+            <Text style={styles.regular}>|</Text>
           </View>
           <View style={styles.child}>
-            <Text
-              style={{
-                color: randomGeneratedColor.id > 5 ? "#FFFFFF" : "#000000",
-                fontSize: 16,
-                fontWeight: "bold",
-              }}
-            >
+            <Text style={styles.regular}>
               Paying: {props.payerPayingPercent}%
             </Text>
           </View>
@@ -124,6 +69,19 @@ const BillPayer = (props) => {
 };
 
 const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: LabelColors.labelWhite,
+    paddingHorizontal: Dimensions.get("window").width / 10,
+    paddingVertical: Dimensions.get("window").height / 50,
+    marginHorizontal: Dimensions.get("window").width / 80,
+    marginVertical: Dimensions.get("window").height / 80,
+    justifyContent: "center",
+    width: Platform.OS === PlatformsCollection.android ? "90%" : "90%",
+    borderRadius: 8,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderColor: "#D1D1D1",
+  },
   avatarContainer: {
     paddingHorizontal: Dimensions.get("window").width / 10,
     paddingVertical: Dimensions.get("window").height / 50,
@@ -142,6 +100,16 @@ const styles = StyleSheet.create({
   },
   child: { paddingHorizontal: 10 },
   nameChild: { flexDirection: "row" },
+  payerName: {
+    fontSize: 16,
+    textDecorationLine: "underline",
+    paddingHorizontal: 10,
+    fontWeight: "bold",
+  },
+  regular: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
 
 export default BillPayer;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, Alert } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
 // CUSTOM COMPONENTS
-import GlobalLabel from "../components/atoms/GlobalLabel";
+import GlobalNote from "../components/atoms/GlobalNote";
 import PayerScrollView from "../components/molecules/payer/PayerScrollView";
 import LargePayerComponent from "../components/molecules/payer/LargePayerComponent";
 import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
@@ -21,9 +21,14 @@ const PayerScreen = (props) => {
 
   const handleProceedBillPaymentPress = () => {
     if (bill.numberOfBillPayers <= 10) {
-      setModalState(true);
+      if ((bill.billAmount / bill.numberOfBillPayers) % 5 !== 0) {
+        setModalState(true);
+      } else {
+        props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+      }
     } else {
-      props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
+      Alert.alert("Done", "Payment Completed");
+      props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
     }
   };
 
@@ -31,7 +36,9 @@ const PayerScreen = (props) => {
     <View style={styles.screen}>
       {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
-          <GlobalLabel content="Tap on payers to make changes" />
+          <View style={styles.noteContainer}>
+            <GlobalNote content="Payer names are randomly generated. Tap on payers to edit their name or adjust bill with another payer." />
+          </View>
           <PayerScrollView
             payerData={billPayers}
             navigation={props.navigation}
@@ -63,7 +70,7 @@ const PayerScreen = (props) => {
           handleButtonPress={() => {
             props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
           }}
-          title="Revert bill"
+          title="Go back"
           styleButtonContainer={styles.revertButton}
           styleButtonText={styles.revertText}
         />
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: "30%",
+    paddingVertical: "10%",
   },
   buttonsContainer: { flexDirection: "row", marginVertical: 10 },
   submitButton: {
@@ -87,6 +94,11 @@ const styles = StyleSheet.create({
   revertButton: { backgroundColor: ColorsCollection.tertiary },
   submitText: { color: ColorsCollection.light },
   revertText: { color: ColorsCollection.light },
+  noteContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "95%",
+  },
 });
 
 export default PayerScreen;

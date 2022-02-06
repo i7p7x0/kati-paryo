@@ -17,7 +17,6 @@ const PayerScrollView = (props) => {
             payerName={payer.payerName}
             payerAmount={payer.payerAmount}
             payerPayingPercent={payer.payerPayingPercent}
-            randomNumber={(Math.floor(Math.random() * 10) + 1).toString()}
             navigation={props.navigation}
           />
         );

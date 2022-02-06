@@ -7,13 +7,13 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+import { useSelector } from "react-redux";
 import * as billActions from "../store/actions/Bill";
 
 // CUSTOM COMPONENTS
 import ColorsCollection from "../constants/ColorsCollection";
 import NUMBER_OF_PAYERS from "../data/NUMBER_OF_PAYERS";
 import GlobalTextInput from "../components/atoms/GlobalTextInput";
-
 import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
 import GlobalModal from "../components/atoms/GlobalModal";
 import NumberOfBillPayersSelector from "../components/molecules/bill/NumberOfBillPayersSelector";
@@ -24,10 +24,8 @@ import GlobalLabel from "../components/atoms/GlobalLabel";
 import BackgroundColors from "../constants/colors/BackgroundColors";
 
 const BillScreen = (props) => {
-  const [billState, setBillState] = useState({
-    billAmount: "",
-    numberOfBillPayers: "",
-  });
+  const bill = useSelector((state) => state.bill);
+  const [billState, setBillState] = useState(bill);
   const [isCustomInputRequired, setIsCustomInputRequired] = useState(false);
   const [customNumberOfPeople, setCustomNumberOfPeople] = useState("");
   const [modalState, setModalState] = useState(false);
@@ -101,7 +99,7 @@ const BillScreen = (props) => {
           placeholder="Enter Bill Amount"
           keyboardType="decimal-pad"
           handleChangeText={handleChangeText}
-          vaule={billState.billAmount}
+          value={billState.billAmount}
         />
         <GlobalSuccessfulButton
           title={

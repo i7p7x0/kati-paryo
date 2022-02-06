@@ -6,6 +6,7 @@ import {
 } from "../actions/Payers";
 import Payer from "../../model/Payer";
 import * as validationInputs from "../../validations/validateInputs";
+const supervillains = require("supervillains");
 
 const initialState = [];
 
@@ -16,7 +17,7 @@ export const payersReducer = (state = initialState, action) => {
       for (let i = 1; i <= action.numberOfBillPayers; i++) {
         let newPayer = new Payer(
           i,
-          "payer " + i,
+          supervillains.random(),
           (action.billAmount / action.numberOfBillPayers).toFixed(2),
           (
             (action.billAmount /
@@ -29,6 +30,7 @@ export const payersReducer = (state = initialState, action) => {
           state = [];
           return state;
         }
+
         state.push(newPayer);
       }
       return state;

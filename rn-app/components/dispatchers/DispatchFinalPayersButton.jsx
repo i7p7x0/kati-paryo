@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#EBEBE4",
   },
   styleButtonText:{
-    fontSize:18,
+    fontSize:18,fontWeight:"bold"
   },
   disabledButtonText: {
     color: "black",fontSize:18,

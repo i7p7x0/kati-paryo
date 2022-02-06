@@ -31,7 +31,7 @@ const PaymentScreen = (props) => {
       <View style={styles.buttonsContainer}>
         <DispatchFinalPayment title="Confirm" navigation={props.navigation} />
         <GlobalFailedButton
-          title="Revert"
+          title="Go back"
           handleButtonPress={() => {
             props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
           }}

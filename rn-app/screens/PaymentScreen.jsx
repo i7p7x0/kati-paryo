@@ -23,9 +23,6 @@ const PaymentScreen = (props) => {
   return (
     <View style={styles.screen}>
       <View style={styles.scrollCcontent}>
-        <View style={styles.checkPayers}>
-          <GlobalLabel content="Your final bill" />
-        </View>
         <PaymentScrollView billPayers={billPayersState} bill={billState} />
       </View>
       <View style={styles.buttonsContainer}>
@@ -45,11 +42,11 @@ const styles = StyleSheet.create({
   screen: {
     backgroundColor: BackgroundColors.lightPink,
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   scrollCcontent: {
-    height: "80%",
+    height: "85%",
   },
 
   buttonsContainer: {

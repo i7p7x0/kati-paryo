@@ -15,7 +15,6 @@ import GlobalNote from "../components/atoms/GlobalNote";
 import PayerScrollView from "../components/molecules/payer/PayerScrollView";
 import LargePayerComponent from "../components/molecules/payer/LargePayerComponent";
 import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";
-import GlobalFailedButton from "../components/atoms/GlobalFailedButton";
 import ColorsCollection from "../constants/ColorsCollection";
 import GlobalModal from "../components/atoms/GlobalModal";
 import DispatchRoundBill from "../components/dispatchers/DispatchRoundBill";
@@ -44,7 +43,7 @@ const PayerScreen = (props) => {
       {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
           <View style={styles.noteContainer}>
-            <GlobalNote>
+            {/* <GlobalNote>
               <Text style={styles.noteText}>
                 Payer names are randomly generated
               </Text>
@@ -52,7 +51,7 @@ const PayerScreen = (props) => {
                 You can Tap on payers to edit their name or adjust bill with
                 another payer.
               </Text>
-            </GlobalNote>
+            </GlobalNote> */}
           </View>
           <PayerScrollView
             payerData={billPayers}
@@ -80,14 +79,6 @@ const PayerScreen = (props) => {
           styleButtonContainer={styles.submitButton}
           styleButtonText={styles.submitText}
           handleButtonPress={handleProceedBillPaymentPress}
-        />
-        <GlobalFailedButton
-          handleButtonPress={() => {
-            props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
-          }}
-          title="Go back"
-          styleButtonContainer={styles.revertButton}
-          styleButtonText={styles.revertText}
         />
       </View>
     </View>

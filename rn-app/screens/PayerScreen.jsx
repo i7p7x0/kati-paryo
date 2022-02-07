@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Dimensions, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
@@ -37,7 +44,15 @@ const PayerScreen = (props) => {
       {bill.numberOfBillPayers <= 10 ? (
         <React.Fragment>
           <View style={styles.noteContainer}>
-            <GlobalNote content="Payer names are randomly generated. Tap on payers to edit their name or adjust bill with another payer." />
+            <GlobalNote>
+              <Text style={styles.noteText}>
+                Payer names are randomly generated
+              </Text>
+              <Text style={styles.noteText}>
+                You can Tap on payers to edit their name or adjust bill with
+                another payer.
+              </Text>
+            </GlobalNote>
           </View>
           <PayerScrollView
             payerData={billPayers}
@@ -98,6 +113,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "95%",
+  },
+  noteText: {
+    color: ColorsCollection.light,
+    fontSize: 18,
+    textAlign: "center",
   },
 });
 

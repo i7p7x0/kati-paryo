@@ -8,9 +8,12 @@ import { Entypo } from "@expo/vector-icons";
 const DrawerContentScreen = (props) => {
   return (
     <View style={styles.screen}>
+      <View style={styles.mainTextContainer}>
+        <Text style={styles.mainText}>Kati Paryo?</Text>
+      </View>
       <DrawerContentScrollView>
         <DrawerItem
-          label="Application"
+          label="Home"
           icon={() => {
             return (
               <View style={styles.drawerItemContainer}>
@@ -45,14 +48,26 @@ const DrawerContentScreen = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
-
+    justifyContent: "flex-start",
+    paddingVertical: "20%",
     backgroundColor: BackgroundColors.blue,
   },
   drawerItemContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  mainContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  mainTextContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  mainText: {
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
 export default DrawerContentScreen;

@@ -5,7 +5,7 @@ import BackgroundColors from "../constants/colors/BackgroundColors";
 const AboutScreen = () => {
   return (
     <View style={styles.screen}>
-      <Text>This is Dummy</Text>
+      <Text>in progress.... made by ishan dai</Text>
     </View>
   );
 };

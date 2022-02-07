@@ -5,6 +5,6 @@ export default {
   paymentScreen: "PaymentScreen",
   resultScreen: "ResultScreen",
   aboutScreen: "AboutScreen",
-  aboutDrawer:"About",
-  applicationDrawer:"Application"
+  aboutDrawer: "About",
+  applicationDrawer: "Home",
 };

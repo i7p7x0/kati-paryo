@@ -22,6 +22,7 @@ import DispatchFinalPayerButton from "../components/dispatchers/DispatchFinalPay
 import GlobalLabel from "../components/atoms/GlobalLabel";
 import BackgroundColors from "../constants/colors/BackgroundColors";
 import LabelColors from "../constants/colors/LabelColors";
+import ButtonsColors from "../constants/colors/ButtonsColors";
 
 const EditPayerScreen = (props) => {
   const billPayersNonAdjusted = useSelector((state) => state.payers);
@@ -191,6 +192,7 @@ const EditPayerScreen = (props) => {
 
         <GlobalModal visible={modalState}>
           <View style={styles.selectAdjustmentPayerParentContainer}>
+            <GlobalLabel content="Select payer to adjust bill with"/>
             <ScrollView>
               {payerTypes.otherPayers.map((payers) => {
                 return (
@@ -213,8 +215,7 @@ const EditPayerScreen = (props) => {
         </GlobalModal>
         {payerTypes.adjustmentPayer === "" ? (
           <GlobalSuccessfulButton
-            title="Adjust
-              contribution"
+            title={"Adjust" + " " + "amount"}
             handleButtonPress={handleAdjustBillPress}
             disabled={bill.numberOfBillPayers > 1 ? false : true}
           />
@@ -265,8 +266,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  submitButtonContainer: { backgroundColor: ColorsCollection.primary },
-  submitButtonText: { color: "black", fontSize: 18 },
+  submitButtonContainer: { backgroundColor: ButtonsColors.successful },
+  submitButtonText: { color: "black", fontSize: 18, fontWeight: "bold" },
   selectAdjustmentPayerContainer: {
     backgroundColor: LabelColors.labelYellow,
     borderRadius: 8,

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   scrollCcontent: {
-    height: "60%",
+    height: "80%",
   },
 
   buttonsContainer: {

@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-import BackgroundColors from "../../../constants/colors/BackgroundColors";
 import ColorsCollection from "../../../constants/ColorsCollection";
 import PlatformsCollection from "../../../constants/PlatformsCollection";
 
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
   infoChild: {
     borderTopWidth: 1,
     borderRightWidth: 1,
-    borderColor:"#D1D1D1",
+    borderColor: "#D1D1D1",
     backgroundColor: ColorsCollection.secondary,
     borderRadius: 8,
     padding: 10,

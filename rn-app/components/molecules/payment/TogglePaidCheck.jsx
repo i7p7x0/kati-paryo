@@ -4,8 +4,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 // CUSTOM COMPONENTS
 
-import ColorsCollection from "../../../constants/ColorsCollection";
-
 const TogglePaidCheck = (props) => {
   const [isPaid, setIsPaid] = useState(false);
 

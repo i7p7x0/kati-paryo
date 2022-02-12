@@ -1,17 +1,10 @@
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  Dimensions,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
 // CUSTOM COMPONENTS
-import GlobalNote from "../components/atoms/GlobalNote";
+
 import PayerScrollView from "../components/molecules/payer/PayerScrollView";
 import LargePayerComponent from "../components/molecules/payer/LargePayerComponent";
 import GlobalSuccessfulButton from "../components/atoms/GlobalSuccessfulButton";

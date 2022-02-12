@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 import { MaterialIcons, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import IconsColors from "../../constants/colors/IconsColors";
 import BackgroundColors from "../../constants/colors/BackgroundColors";

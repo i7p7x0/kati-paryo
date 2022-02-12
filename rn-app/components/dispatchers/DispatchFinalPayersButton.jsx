@@ -6,7 +6,6 @@ import {
   Platform,
   TouchableOpacity,
   TouchableNativeFeedback,
-  Alert,
 } from "react-native";
 
 import * as payersActions from "../../store/actions/Payers";
@@ -77,11 +76,13 @@ const styles = StyleSheet.create({
   disabledButton: {
     backgroundColor: "#EBEBE4",
   },
-  styleButtonText:{
-    fontSize:18,fontWeight:"bold"
+  styleButtonText: {
+    fontSize: 18,
+    fontWeight: "bold",
   },
   disabledButtonText: {
-    color: "black",fontSize:18,
+    color: "black",
+    fontSize: 18,
   },
 });
 

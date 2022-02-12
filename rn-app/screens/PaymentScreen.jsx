@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 // CUSTOM COMPONENTS
@@ -7,9 +7,6 @@ import { useSelector } from "react-redux";
 import PaymentScrollView from "../components/molecules/payment/PaymentScrollView";
 import DispatchFinalPayment from "../components/dispatchers/DispatchFinalPayment";
 import BackgroundColors from "../constants/colors/BackgroundColors";
-import GlobalFailedButton from "../components/atoms/GlobalFailedButton";
-import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
-import GlobalLabel from "../components/atoms/GlobalLabel";
 
 const PaymentScreen = (props) => {
   const billPayers = useSelector((state) => state.payers);
@@ -27,12 +24,12 @@ const PaymentScreen = (props) => {
       </View>
       <View style={styles.buttonsContainer}>
         <DispatchFinalPayment title="Confirm" navigation={props.navigation} />
-        <GlobalFailedButton
+        {/* <GlobalFailedButton
           title="Go back"
           handleButtonPress={() => {
             props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);
           }}
-        />
+        /> */}
       </View>
     </View>
   );

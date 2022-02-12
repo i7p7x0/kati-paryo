@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, Dimensions, StyleSheet } from "react-native";
 
 import ColorsCollection from "../../constants/ColorsCollection";
-import BackgroundColors from "../../constants/colors/BackgroundColors";
 import LabelColors from "../../constants/colors/LabelColors";
 
 const GlobalLabel = (props) => {
@@ -15,7 +14,7 @@ const GlobalLabel = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: LabelColors.labelBlack,
+    backgroundColor: LabelColors.labelRed,
     paddingHorizontal: Dimensions.get("window").width / 12,
     paddingVertical: Dimensions.get("window").height / 80,
     marginHorizontal: Dimensions.get("window").width / 80,

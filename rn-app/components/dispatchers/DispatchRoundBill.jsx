@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import GlobalLabel from "../atoms/GlobalLabel";
@@ -20,7 +20,7 @@ const DispatchRoundBill = (props) => {
     if (bill.numberOfBillPayers <= 10) {
       props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
     } else if (bill.numberOfBillPayers > 10) {
-      Alert.alert("Done", "Payment Completed");
+      Alert.alert("Done!", "We hope it helped answer your 'KATI PARYO?'");
     }
   };
   const handleNoPress = () => {
@@ -28,7 +28,7 @@ const DispatchRoundBill = (props) => {
     if (bill.numberOfBillPayers <= 10) {
       props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
     } else if (bill.numberOfBillPayers > 10) {
-      Alert.alert("Done", "Payment Completed");
+      Alert.alert("Done!", "We hope it helped answer your 'KATI PARYO?'");
     }
   };
 

@@ -20,7 +20,6 @@ import NumberOfBillPayersSelector from "../components/molecules/bill/NumberOfBil
 import DispatchBillButton from "../components/dispatchers/DispatchBillButton";
 import * as validationInputs from "../validations/validateInputs";
 import MainIconsFrame from "../components/atoms/MainIconsFrame";
-import GlobalLabel from "../components/atoms/GlobalLabel";
 import BackgroundColors from "../constants/colors/BackgroundColors";
 
 const BillScreen = (props) => {

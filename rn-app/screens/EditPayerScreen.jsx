@@ -74,7 +74,12 @@ const EditPayerScreen = (props) => {
   };
 
   const handleChangeText = (text) => {
-    let newName = text;
+    let newName;
+    if (payerTypes.editedPayer.payerName.length <= 16) {
+      newName = text;
+    } else {
+      newName = "";
+    }
 
     const newEditedPayer = {
       payerAmount: payerTypes.editedPayer.payerAmount,
@@ -192,7 +197,7 @@ const EditPayerScreen = (props) => {
 
         <GlobalModal visible={modalState}>
           <View style={styles.selectAdjustmentPayerParentContainer}>
-            <GlobalLabel content="Select payer to adjust bill with"/>
+            <GlobalLabel content="Select payer to adjust bill with" />
             <ScrollView>
               {payerTypes.otherPayers.map((payers) => {
                 return (

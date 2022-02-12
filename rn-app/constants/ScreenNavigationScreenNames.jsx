@@ -7,4 +7,5 @@ export default {
   aboutScreen: "AboutScreen",
   aboutDrawer: "About",
   applicationDrawer: "Home",
+  informationScreen: "Information",
 };

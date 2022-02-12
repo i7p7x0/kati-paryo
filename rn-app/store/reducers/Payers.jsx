@@ -21,7 +21,10 @@ export const payersReducer = (state = initialState, action) => {
         generatedName = supervillains.random();
 
         if (generatedNames.length > 0) {
-          while (generatedNames.includes(generatedName)) {
+          while (
+            generatedNames.includes(generatedName) ||
+            generatedName.length > 16
+          ) {
             generatedName = supervillains.random();
           }
         }
@@ -72,7 +75,7 @@ export const payersReducer = (state = initialState, action) => {
         new Payer(
           action.payers[action.payers.length - 1].payerId,
           action.payers[action.payers.length - 1].payerName,
-          action.total - leftOvers,
+          (action.total - leftOvers).toFixed(2),
           (((action.total - leftOvers) / action.total) * 100).toFixed(2)
         )
       );

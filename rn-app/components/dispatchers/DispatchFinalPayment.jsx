@@ -13,7 +13,10 @@ const DispatchFinalPayment = (props) => {
   const handleDispatchAction = () => {
     dispatch(billActions.removeBill());
     dispatch(payersActions.removePayer());
-    Alert.alert("Done!", "Completed Payment");
+    Alert.alert(
+      "Done!",
+      "Thank You for using kati paryo. We hope it helped answer 'KATI PARYO'"
+    );
     props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
   };
 

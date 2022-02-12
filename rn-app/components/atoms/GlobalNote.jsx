@@ -8,12 +8,14 @@ const GlobalNote = (props) => {
     <View style={styles.screen}>
       <View>
         <Text>
-          <Ionicons name="information-circle" size={40} color={LabelColors.labelGreen} />
+          <Ionicons
+            name="information-circle"
+            size={40}
+            color={LabelColors.labelGreen}
+          />
         </Text>
       </View>
-      <View>
-        <Text style={styles.text}>{props.content}</Text>
-      </View>
+      <View>{props.children}</View>
     </View>
   );
 };

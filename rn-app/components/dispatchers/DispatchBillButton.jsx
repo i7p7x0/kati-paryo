@@ -17,7 +17,6 @@ import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenN
 import PlatformsCollection from "../../constants/PlatformsCollection";
 import * as validationInputs from "../../validations/validateInputs";
 import ButtonsColors from "../../constants/colors/ButtonsColors";
-import { Entypo } from "@expo/vector-icons";
 
 const DispatchBillButton = (props) => {
   const dispatch = useDispatch();
@@ -49,7 +48,7 @@ const DispatchBillButton = (props) => {
           )
         );
 
-      props.handleResetStates();
+        props.handleResetStates();
     }
 
     props.navigation.navigate(ScreenNavigationScreenNames.payerScreen);

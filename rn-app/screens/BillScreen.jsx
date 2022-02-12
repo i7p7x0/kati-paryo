@@ -93,7 +93,6 @@ const BillScreen = (props) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.screen}>
-        <GlobalLabel content="App Title" />
         <MainIconsFrame />
         <GlobalTextInput
           placeholder="Enter Bill Amount"

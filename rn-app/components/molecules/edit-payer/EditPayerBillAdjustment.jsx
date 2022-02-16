@@ -4,7 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
+  StyleSheet,Dimensions,
   TouchableNativeFeedback,
   Platform,
 } from "react-native";
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   infoTextHeader: {
-    fontSize: 15,
+    fontSize: Dimensions.get("window").width / 22,
     fontWeight: "bold",
     textDecorationLine: "underline",
     paddingBottom: 10,

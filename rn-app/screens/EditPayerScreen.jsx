@@ -190,7 +190,7 @@ const EditPayerScreen = (props) => {
 
         <GlobalLabel content="Edit Name:" />
         <GlobalTextInput
-          placeholder="Edit Player Name (2 - 10 characters)"
+          placeholder="Edit Player Name (2 - 16 characters)"
           value={payerTypes.editedPayer.payerName}
           handleChangeText={handleChangeText}
         />
@@ -239,11 +239,12 @@ const EditPayerScreen = (props) => {
           title="Done"
           styleButtonContainer={styles.submitButtonContainer}
           styleButtonText={styles.submitButtonText}
-          // disabled={
-          //   validationInputs.validatePayer(payerTypes.editedPayer)
-          //     ? false
-          //     : true
-          // }
+          disabled={
+            payerTypes.editedPayer.payerName.length >= 2 &&
+            payerTypes.editedPayer.payerName.length <= 16
+              ? false
+              : true
+          }
           navigation={props.navigation}
           payerData={payerTypes}
           resetPayerStates={resetPayerStates}
@@ -272,7 +273,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   submitButtonContainer: { backgroundColor: ButtonsColors.successful },
-  submitButtonText: { color: "black", fontSize: 18, fontWeight: "bold" },
+  submitButtonText: {
+    color: "black",
+    fontSize: Dimensions.get("window").width / 22,
+    fontWeight: "bold",
+  },
   selectAdjustmentPayerContainer: {
     backgroundColor: LabelColors.labelYellow,
     borderRadius: 8,
@@ -283,7 +288,7 @@ const styles = StyleSheet.create({
   },
   selectAdjustmentPayerText: {
     color: LabelColors.labelBlack,
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 22,
     fontWeight: "bold",
   },
   selectAdjustmentPayerParentContainer: {

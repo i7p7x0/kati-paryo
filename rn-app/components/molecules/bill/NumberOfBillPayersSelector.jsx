@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet,Dimensions, ScrollView } from "react-native";
 
 // custom Components
 
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   selectBillPayersButtonText: {
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 22,
     color: LabelColors.labelBlack,
   },
 });

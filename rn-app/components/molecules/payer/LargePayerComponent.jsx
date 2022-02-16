@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 22,
     fontWeight: "bold",
   },
   textVariable: {
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 22,
     fontWeight: "bold",
     fontStyle: "italic",
     color: FontColors.money,

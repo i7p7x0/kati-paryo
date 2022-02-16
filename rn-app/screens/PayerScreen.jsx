@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet,Dimensions, Alert } from "react-native";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import { useSelector } from "react-redux";
 
@@ -26,7 +26,7 @@ const PayerScreen = (props) => {
         props.navigation.navigate(ScreenNavigationScreenNames.paymentScreen);
       }
     } else {
-      Alert.alert("Done", "Payment Completed");
+      Alert.alert("Done!", "We hope it helped answer your 'KATI PARYO?'");
       props.navigation.navigate(ScreenNavigationScreenNames.homeScreen);
     }
   };
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   noteText: {
     color: ColorsCollection.light,
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 22,
     textAlign: "center",
   },
 });

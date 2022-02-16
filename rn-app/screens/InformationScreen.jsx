@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   childContainer: {
     paddingVertical: Dimensions.get("window").height / 20,
   },
-  informationText: { fontSize: 18, textAlign: "left" },
+  informationText: { fontSize: Dimensions.get("window").width / 22, textAlign: "left" },
 });
 
 export default InformationScreen;

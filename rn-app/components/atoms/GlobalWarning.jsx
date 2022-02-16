@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#FFFFFF",
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 22,
   },
 });
 

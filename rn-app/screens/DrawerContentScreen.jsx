@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Dimensions,StyleSheet } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import ScreenNavigationScreenNames from "../constants/ScreenNavigationScreenNames";
 import BackgroundColors from "../constants/colors/BackgroundColors";
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   mainText: {
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 17,
     fontWeight: "bold",
   },
 });

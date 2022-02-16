@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   text: {
     color: LabelColors.labelBlack,
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: Dimensions.get("window").width / 22,
   },
   markAllChild: {
     paddingHorizontal: Dimensions.get("window").width / 40,

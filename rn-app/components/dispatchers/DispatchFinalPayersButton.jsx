@@ -12,8 +12,7 @@ import * as payersActions from "../../store/actions/Payers";
 import { useDispatch } from "react-redux";
 import ScreenNavigationScreenNames from "../../constants/ScreenNavigationScreenNames";
 import PlatformsCollection from "../../constants/PlatformsCollection";
-
-import { Entypo } from "@expo/vector-icons";
+import ButtonsColors from "../../constants/colors/ButtonsColors";
 
 const DispatchFinalPayerButton = (props) => {
   const dispatch = useDispatch();
@@ -49,7 +48,7 @@ const DispatchFinalPayerButton = (props) => {
       {props.disabled ? (
         <View style={[styles.styleButtonContainer, styles.disabledButton]}>
           <Text style={(styles.styleButtonText, styles.disabledButtonText)}>
-            {props.title} <Entypo name="block" size={24} color="black" />
+            {props.title}
           </Text>
         </View>
       ) : (
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
     elevation: 20,
   },
   disabledButton: {
-    backgroundColor: "#EBEBE4",
+    backgroundColor: ButtonsColors.disabled,
   },
   styleButtonText: {
     fontSize: 18,
@@ -83,6 +82,7 @@ const styles = StyleSheet.create({
   disabledButtonText: {
     color: "black",
     fontSize: 18,
+    fontWeight: "bold",
   },
 });
 

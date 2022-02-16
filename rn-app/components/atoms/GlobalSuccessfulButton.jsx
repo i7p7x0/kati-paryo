@@ -61,7 +61,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 20,
   },
-  styleButtonText: { fontWeight: "bold", fontSize: 18, color: "black" },
+  styleButtonText: {
+    fontWeight: "bold",
+    fontSize: Dimensions.get("window").width / 22,
+    color: "black",
+  },
 });
 
 export default GlobalSuccessfulButton;

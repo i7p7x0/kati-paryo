@@ -46,7 +46,7 @@ const BillPayer = (props) => {
           <View style={styles.child}>
             <Text
               style={{
-                fontSize: 16,
+                fontSize: Dimensions.get("window").width / 22,
                 fontWeight: "bold",
               }}
             >
@@ -101,13 +101,13 @@ const styles = StyleSheet.create({
   child: { paddingHorizontal: 10 },
   nameChild: { flexDirection: "row" },
   payerName: {
-    fontSize: 16,
+    fontSize: Dimensions.get("window").width / 22,
     textDecorationLine: "underline",
     paddingHorizontal: 10,
     fontWeight: "bold",
   },
   regular: {
-    fontSize: 16,
+    fontSize: Dimensions.get("window").width / 22,
     fontWeight: "bold",
   },
 });
